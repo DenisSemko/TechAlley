@@ -1,5 +1,6 @@
 namespace Catalog.Domain.Entities;
 
+[BsonCollection("CatalogBrand")]
 public sealed class CatalogBrand : BaseEntity
 {
     public string Brand { get; private set; }
