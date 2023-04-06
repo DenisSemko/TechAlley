@@ -15,14 +15,14 @@ public class UnitOfWork : IUnitOfWork
 
     #region Repositories
     
-    private IBaseRepository<CatalogItem> catalogItemRepository;
-    public IBaseRepository<CatalogItem> CatalogItems => catalogItemRepository ?? new BaseRepository<CatalogItem>(_mongoSettings);
+    private ICatalogItemRepository catalogItemRepository;
+    public ICatalogItemRepository CatalogItems => catalogItemRepository ?? new CatalogItemRepository(_mongoSettings);
     
-    private IBaseRepository<CatalogType> catalogTypeRepository;
-    public IBaseRepository<CatalogType> CatalogTypes => catalogTypeRepository ?? new BaseRepository<CatalogType>(_mongoSettings);
+    private ICatalogTypeRepository catalogTypeRepository;
+    public ICatalogTypeRepository CatalogTypes => catalogTypeRepository ?? new CatalogTypeRepository(_mongoSettings);
     
-    private IBaseRepository<CatalogBrand> catalogBrandRepository;
-    public IBaseRepository<CatalogBrand> CatalogBrands => catalogBrandRepository ?? new BaseRepository<CatalogBrand>(_mongoSettings);
+    private ICatalogBrandRepository catalogBrandRepository;
+    public ICatalogBrandRepository CatalogBrands => catalogBrandRepository ?? new CatalogBrandRepository(_mongoSettings);
     
     #endregion
 }
