@@ -1,1 +1,14 @@
 global using Catalog.Infrastructure;
+global using Catalog.Application;
+global using Microsoft.AspNetCore.Mvc;
+global using System.Net;
+global using MediatR;
+global using Catalog.Application.Features.Catalog.Queries.GetCatalogItems;
+global using Catalog.Domain.Entities;
+global using Catalog.Application.Features.Catalog.Commands.AddCatalogItem;
+global using Catalog.Application.Features.Catalog.Commands.DeleteCatalogItem;
+global using Catalog.Application.Features.Catalog.Queries.GetCatalogItemById;
+global using Catalog.API.Extensions;
+global using Catalog.Infrastructure.Persistence;
+global using Catalog.Domain.Repositories.Persistence;
+global using MongoDB.Driver;

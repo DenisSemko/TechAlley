@@ -1,1 +1,14 @@
 global using Catalog.Domain.Entities;
+global using MediatR;
+global using System.Reflection;
+global using FluentValidation;
+global using Microsoft.Extensions.DependencyInjection;
+global using AutoMapper;
+global using Catalog.Domain.Repositories.Persistence;
+global using Catalog.Application.Features.Catalog.Queries.GetCatalogItems;
+global using Catalog.Application.Mapper.Converters;
+global using Microsoft.Extensions.Logging;
+global using static Catalog.Application.Common.Constants;
+global using Catalog.Application.Features.Catalog.Commands.AddCatalogItem;
+global using Catalog.Application.Extensions;
+global using Catalog.Application.Features.Catalog.Commands.UpdateCatalogItem;

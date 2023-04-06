@@ -2,19 +2,33 @@ namespace Catalog.Infrastructure.Persistence;
 
 public static class CatalogSeed
 {
-    public static void SeedData(this IServiceCollection services)
+    public static async Task SeedData(this IServiceCollection services)
     {
         using var serviceProvider = services.BuildServiceProvider();
         using var serviceScope = serviceProvider.CreateScope();
         var context = serviceScope.ServiceProvider.GetRequiredService<IUnitOfWork>();
+        
+        var catalogTypesExist = await context.CatalogTypes.AnyAsync();
+        var catalogBrandsExist = await context.CatalogBrands.AnyAsync();
+        var catalogItemsExist = await context.CatalogItems.AnyAsync();
 
-        context.CatalogTypes.AddAsync(new CatalogType(new Guid("1606DBEE-17A6-417B-80A6-1E4BA38E0226"), "Test Type"));
-        context.CatalogBrands.AddAsync(new CatalogBrand(new Guid("1606DBEE-17A6-417B-80A6-1E4BA38E0227"), "Test Brand"));
+        if (catalogTypesExist && catalogBrandsExist && catalogItemsExist)
+        {
+            return;
+        }
 
-        context.CatalogItems.AddAsync(new CatalogItem(new Guid("1606DBEE-17A6-417B-80A6-1E4BA38E0228"), "Test Item",
-            "Test Item", "image", "src/image.png",
-            context.CatalogTypes.GetByIdAsync(new Guid("1606DBEE-17A6-417B-80A6-1E4BA38E0226")).Result,
-            context.CatalogBrands.GetByIdAsync(new Guid("1606DBEE-17A6-417B-80A6-1E4BA38E0227")).Result,
-            0, 1));
+        var catalogType = new CatalogType(Guid.NewGuid(), "Test Type");
+        var catalogBrand = new CatalogBrand(Guid.NewGuid(), "Test Brand");
+        
+        await context.CatalogTypes.InsertOneAsync(catalogType);
+        await context.CatalogBrands.InsertOneAsync(catalogBrand);
+        
+        var catalogItem = new CatalogItem(Guid.NewGuid(), "Test Item",
+            "Test Item", "image.png", "src/image.png",
+            catalogType,
+            catalogBrand,
+            0, 1);
+
+        await context.CatalogItems.InsertOneAsync(catalogItem);
     }
 }

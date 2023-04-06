@@ -36,4 +36,23 @@ public sealed class CatalogItem : BaseEntity
 	    CatalogBrandId = catalogBrand.Id;
 	    Quantity = quantity;
     }
+    
+    public override bool Equals(object obj)
+    {
+	    if (obj == null || GetType() != obj.GetType())
+	    {
+		    return false;
+	    }
+
+	    var other = (CatalogItem)obj;
+
+	    return Id == other.Id
+	           && Name == other.Name
+	           && Description == other.Description
+	           && Price == other.Price
+	           && ImageUri == other.ImageUri
+	           && CatalogType == other.CatalogType
+	           && CatalogBrand == other.CatalogBrand
+	           && Quantity == other.Quantity;
+    }
 }
