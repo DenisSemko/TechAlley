@@ -45,7 +45,7 @@ public class AddCatalogItemCommandHandlerTests
     }
     
     [Fact]
-    public async Task Handle_InvalidCatalogType_ReturnsException()
+    public async Task Handle_AddCatalogItem_ReturnsNewItem()
     {
         //Arrange
         var catalogType = new CatalogType(Guid.NewGuid(), "Test Type");
