@@ -1,0 +1,11 @@
+﻿global using IdentityServer.Domain.Entities;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using IdentityServer.Infrastructure.Persistence;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using System.Linq.Expressions;
+global using IdentityServer.Domain.Repositories.Persistence;
+global using IdentityServer.Infrastructure.Repository;
