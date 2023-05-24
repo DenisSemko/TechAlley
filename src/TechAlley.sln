@@ -31,13 +31,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Domain", "Services\IdentityServer\IdentityServer\IdentityServer.Domain\IdentityServer.Domain.csproj", "{1BD6C742-BE94-42D2-B9D4-1A920C172B77}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Infrastructure", "Services\IdentityServer\IdentityServer.Infrastructure\IdentityServer.Infrastructure.csproj", "{BABAE976-BA46-4948-8599-D97D128684C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Application", "Services\IdentityServer\IdentityServer.Application\IdentityServer.Application.csproj", "{8EED98F9-E21A-4E27-87BF-0B15C4A7F44D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.API", "Services\IdentityServer\IdentityServer.API\IdentityServer.API.csproj", "{203472F1-621C-4BEC-8DDF-B13DFF7E5477}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{88F60F9D-DEE1-4862-9862-EC9985F831ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateways\ApiGateway\ApiGateway.csproj", "{FA4D6A6C-91C5-4177-9E20-A59BE2156B93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +57,10 @@ Global
 		{CD8D1976-B5EA-4B33-979B-1AF134619E57} = {97B9B4E2-F1C9-447E-B5B2-E20FC5C65B22}
 		{C5877D90-576A-48D4-A279-4E26805573F3} = {4E97D249-D05C-4174-8E4A-6B569AC4660E}
 		{D47D097A-3C4A-48BF-9EB3-F29BAA6342D2} = {C5877D90-576A-48D4-A279-4E26805573F3}
-		{1BD6C742-BE94-42D2-B9D4-1A920C172B77} = {DC09AE6F-ECD0-4ED7-A5C0-0EE817C3CC97}
 		{BABAE976-BA46-4948-8599-D97D128684C2} = {DC09AE6F-ECD0-4ED7-A5C0-0EE817C3CC97}
 		{8EED98F9-E21A-4E27-87BF-0B15C4A7F44D} = {DC09AE6F-ECD0-4ED7-A5C0-0EE817C3CC97}
 		{203472F1-621C-4BEC-8DDF-B13DFF7E5477} = {DC09AE6F-ECD0-4ED7-A5C0-0EE817C3CC97}
+		{FA4D6A6C-91C5-4177-9E20-A59BE2156B93} = {88F60F9D-DEE1-4862-9862-EC9985F831ED}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A670EE53-FB48-4F16-A1CB-FD142CDA1976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -81,10 +83,6 @@ Global
 		{D47D097A-3C4A-48BF-9EB3-F29BAA6342D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D47D097A-3C4A-48BF-9EB3-F29BAA6342D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D47D097A-3C4A-48BF-9EB3-F29BAA6342D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1BD6C742-BE94-42D2-B9D4-1A920C172B77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BD6C742-BE94-42D2-B9D4-1A920C172B77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BD6C742-BE94-42D2-B9D4-1A920C172B77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BD6C742-BE94-42D2-B9D4-1A920C172B77}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BABAE976-BA46-4948-8599-D97D128684C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BABAE976-BA46-4948-8599-D97D128684C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BABAE976-BA46-4948-8599-D97D128684C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -97,5 +95,9 @@ Global
 		{203472F1-621C-4BEC-8DDF-B13DFF7E5477}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{203472F1-621C-4BEC-8DDF-B13DFF7E5477}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{203472F1-621C-4BEC-8DDF-B13DFF7E5477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA4D6A6C-91C5-4177-9E20-A59BE2156B93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA4D6A6C-91C5-4177-9E20-A59BE2156B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA4D6A6C-91C5-4177-9E20-A59BE2156B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA4D6A6C-91C5-4177-9E20-A59BE2156B93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

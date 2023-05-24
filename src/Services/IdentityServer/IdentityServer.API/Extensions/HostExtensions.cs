@@ -20,7 +20,7 @@ public static class HostExtensions
 
                 logger.LogInformation("Migrated database associated with context {DbContextName}", typeof(TContext).Name);
             }
-            catch (SqlException ex)
+            catch (PostgresException ex)
             {
                 logger.LogError(ex, "An error occurred while migrating the database used on context {DbContextName}", typeof(TContext).Name);
 
