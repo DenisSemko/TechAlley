@@ -1,0 +1,7 @@
+{
+  "JWT": {
+    "Audience": "http://localhost:4200",
+    "Issuer": "http://localhost:7034",
+    "Secret": "ByYM000OLlMQG6VVVp1OH7Xzyr7gHuw1qvUC5dcGt3SNM"
+  }
+}

@@ -12,3 +12,5 @@ global using Catalog.API.Extensions;
 global using Catalog.Infrastructure.Persistence;
 global using Catalog.Domain.Repositories.Persistence;
 global using MongoDB.Driver;
+global using Catalog.Application.Features.Catalog.Commands.UpdateCatalogItem;
+global using Microsoft.AspNetCore.Authorization;

@@ -1,5 +1,3 @@
-using Catalog.Application.Features.Catalog.Commands.UpdateCatalogItem;
-
 namespace Catalog.API.Controllers;
 
 /// <summary>

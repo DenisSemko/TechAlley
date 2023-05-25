@@ -1,6 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors();
+builder.Configuration.AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "../../../SharedConfig", "Config.json"), true, true);
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.Configure<JwtOptions>(

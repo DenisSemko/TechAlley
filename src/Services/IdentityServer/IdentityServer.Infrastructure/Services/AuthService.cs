@@ -30,6 +30,7 @@ public class AuthService : IAuthService
         }
         
         ApplicationUser newUser = _mapper.Map<ApplicationUser>(registerModel);
+        newUser.ProfileImage = "";
         //Work with Profile Image
         //newUser.ProfileImage = _profileImageService..
 

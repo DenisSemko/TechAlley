@@ -1,4 +1,4 @@
-namespace ApiGateway.Common;
+namespace OcelotApiGateway.Common;
 
 public static class MiddlewareExtensions
 {

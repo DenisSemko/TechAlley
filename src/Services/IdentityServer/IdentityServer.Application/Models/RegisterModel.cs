@@ -8,5 +8,5 @@ public class RegisterModel
     public string Username { get; set; }
     public string Email { get; set; }
     public string PasswordHash { get; set; }
-    public IFormFile ProfileImage { get; set; }
+    public string ProfileImage { get; set; }
 }
