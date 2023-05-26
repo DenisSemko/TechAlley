@@ -1,0 +1,12 @@
+global using IdentityServer.Infrastructure;
+global using Microsoft.EntityFrameworkCore;
+global using IdentityServer.API.Extensions;
+global using IdentityServer.Infrastructure.Persistence;
+global using Npgsql;
+global using IdentityServer.Application.Common.Jwt;
+global using Microsoft.Extensions.Options;
+global using IdentityServer.Application;
+global using IdentityServer.Application.Common;
+global using IdentityServer.Application.Contracts;
+global using IdentityServer.Application.Models;
+global using Microsoft.AspNetCore.Mvc;
