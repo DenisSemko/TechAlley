@@ -1,0 +1,9 @@
+global using Basket.Application;
+global using Basket.Infrastructure;
+global using System.Net;
+global using Basket.Application.Features.Basket.Queries.GetBasketByBuyerId;
+global using MediatR;
+global using Microsoft.AspNetCore.Mvc;
+global using Basket.Application.Features.Basket.Commands.UpdateBasketItems;
+global using Basket.Application.Features.Basket.Commands.CheckoutBasket;
+global using Basket.Application.Features.Basket.Commands.DeleteBasket;

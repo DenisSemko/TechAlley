@@ -36,10 +36,10 @@ public class CatalogController : ControllerBase
     [ProducesResponseType(typeof(IEnumerable<CatalogItemDto>), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<IEnumerable<CatalogItemDto>>> Get()
     {
-        var query = new GetCatalogItemsQuery();
+        GetCatalogItemsQuery query = new GetCatalogItemsQuery();
         
         _logger.Log(LogLevel.Information, "Executing CatalogItem Get");
-        var catalogItems = await _mediator.Send(query);
+        List<CatalogItemDto> catalogItems = await _mediator.Send(query);
 
         return Ok(catalogItems);
     }

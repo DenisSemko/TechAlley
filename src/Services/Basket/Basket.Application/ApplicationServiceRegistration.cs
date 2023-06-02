@@ -1,4 +1,4 @@
-namespace Catalog.Application;
+namespace Basket.Application;
 
 public static class ApplicationServiceRegistration
 {
