@@ -10,3 +10,4 @@ global using IdentityServer.Application.Common;
 global using IdentityServer.Application.Contracts;
 global using IdentityServer.Application.Models;
 global using Microsoft.AspNetCore.Mvc;
+global using System.Net;

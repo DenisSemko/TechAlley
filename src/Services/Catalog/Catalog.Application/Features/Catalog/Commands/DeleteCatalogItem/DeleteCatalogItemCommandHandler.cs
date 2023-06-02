@@ -14,7 +14,7 @@ public class DeleteCatalogItemCommandHandler : IRequestHandler<DeleteCatalogItem
     public async Task Handle(DeleteCatalogItemCommand request, CancellationToken cancellationToken)
     {
         CatalogItem catalogItem = await _unitOfWork.CatalogItems.GetByIdAsync(request.Id);
-        if (catalogItem == null)
+        if (catalogItem is null)
         {                
             throw new KeyNotFoundException(nameof(CatalogItem));
         }

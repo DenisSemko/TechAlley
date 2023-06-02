@@ -1,0 +1,113 @@
+.navbar {
+    position: absolute;
+    z-index: 9999;
+
+    .wrapper {
+        padding: 10px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            .logo img{
+                width: 6.5vw;
+            }
+
+            .link {
+                color: white;
+                text-decoration: none;
+                margin-left: 1rem;
+                position: relative;
+                padding: 0 10px;
+                font: normal 300 1.2rem/1.86 Poppins,sans-serif;
+                font-weight: 400;
+            }
+
+            .link:after {
+                content: '';
+                position: absolute;
+                background-color:#c96;
+                height: 1px;
+                width: 0;
+                left: 0;
+                bottom: -10px;
+                transition: .3s;
+            }
+            .link:hover:after {
+                width: 100%;
+            }
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-left: calc(100vw - 50vw);
+
+            .icons {
+                display: flex;
+                gap: 15px;
+                color: white;
+                cursor: pointer;
+
+                .cart-icon {
+                    position: relative;
+
+                    span {
+                        font-size: 12px;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        background-color: #c96;
+                        color: white;
+                        position: absolute;
+                        right: -10px;
+                        top: -10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                .cart-icon:hover {
+                    color: #c96;
+                }
+
+                .wish-list-icon {
+                    position: relative;
+
+                    span {
+                        font-size: 12px;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        background-color: #c96;
+                        color: white;
+                        position: absolute;
+                        right: -10px;
+                        top: -10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                .wish-list-icon:hover {
+                    color: #c96;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    
+}
+
+@media only screen and (max-width: 768px) {
+
+}
