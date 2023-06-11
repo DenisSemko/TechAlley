@@ -77,7 +77,7 @@ public class CatalogController : ControllerBase
     /// </returns>
     [HttpPost]
     [ProducesResponseType((int)HttpStatusCode.Created)]
-    public async Task<ActionResult<CatalogItem>> Post([FromBody] AddCatalogItemCommand command)
+    public async Task<ActionResult<CatalogItemDto>> Post([FromBody] AddCatalogItemCommand command)
     {
         _logger.Log(LogLevel.Information, "Executing CatalogItem Post");
         var result = await _mediator.Send(command);

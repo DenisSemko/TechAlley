@@ -1,0 +1,14 @@
+global using Ordering.Application;
+global using Ordering.Infrastructure;
+global using Microsoft.AspNetCore.Mvc;
+global using MediatR;
+global using System.Net;
+global using Ordering.Application.Features.Ordering.Commands.AddOrder;
+global using Ordering.Application.Features.Ordering.Commands.DeleteOrder;
+global using Ordering.Application.Features.Ordering.Commands.UpdateOrder;
+global using Ordering.Application.Features.Ordering.Queries.GetOrdersByBuyerId;
+global using EventBus.Messages.Events;
+global using MassTransit;
+global using AutoMapper;
+global using Ordering.API.Consumer;
+global using EventBus.Messages.Common;

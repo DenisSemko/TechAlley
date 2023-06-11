@@ -13,3 +13,4 @@ global using Basket.Application.Features.Basket.Queries.GetBasketByBuyerId;
 global using Basket.Application.Features.Basket.Commands.UpdateBasketItems;
 global using EventBus.Messages.Events;
 global using Basket.Application.Features.Basket.Commands.CheckoutBasket;
+global using MassTransit;

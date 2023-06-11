@@ -1,0 +1,15 @@
+global using Microsoft.Extensions.DependencyInjection;
+global using System.Reflection;
+global using FluentValidation;
+global using MediatR;
+global using AutoMapper;
+global using Ordering.Application.Features.Ordering.Queries.GetOrdersByBuyerId;
+global using Ordering.Application.Mapper.Converters;
+global using Ordering.Domain.Entities;
+global using Ordering.Application.Features.Ordering.Commands.AddOrder;
+global using Microsoft.Extensions.Logging;
+global using Ordering.Domain.Repositories;
+global using Ordering.Application.Common;
+global using Ordering.Application.Features.Ordering.Commands.UpdateOrder;
+global using Ordering.Application.Behaviours;
+global using EventBus.Messages.Events;

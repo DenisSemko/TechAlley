@@ -1,26 +1,28 @@
 namespace Catalog.Application.Features.Catalog.Commands.AddCatalogItem;
 
-public class AddCatalogItemCommandHandler : IRequestHandler<AddCatalogItemCommand, CatalogItem>
+public class AddCatalogItemCommandHandler : IRequestHandler<AddCatalogItemCommand, CatalogItemDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<AddCatalogItemCommandHandler> _logger;
+    private readonly IMapper _mapper;
 
-    public AddCatalogItemCommandHandler(IUnitOfWork unitOfWork, ILogger<AddCatalogItemCommandHandler> logger)
+    public AddCatalogItemCommandHandler(IUnitOfWork unitOfWork, ILogger<AddCatalogItemCommandHandler> logger, IMapper mapper)
     {
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<CatalogItem> Handle(AddCatalogItemCommand request, CancellationToken cancellationToken)
+    public async Task<CatalogItemDto> Handle(AddCatalogItemCommand request, CancellationToken cancellationToken)
     {
-        CatalogType catalogType = await _unitOfWork.CatalogTypes.GetTypeByName(request.CatalogType);
-        CatalogBrand catalogBrand = await _unitOfWork.CatalogBrands.GetBrandByName(request.CatalogBrand);
-        CatalogItem catalogItem = AddCatalogItemCommandToCatalogItem.Convert(request, catalogType, catalogBrand);
+        CatalogTypeDto catalogType = _mapper.Map<CatalogTypeDto>(await _unitOfWork.CatalogTypes.GetTypeByName(request.CatalogType));
+        CatalogBrandDto catalogBrand = _mapper.Map<CatalogBrandDto>(await _unitOfWork.CatalogBrands.GetBrandByName(request.CatalogBrand));
+        CatalogItemDto catalogItemDto = _mapper.Map<CatalogItemDto>(request);
         
-        await _unitOfWork.CatalogItems.InsertOneAsync(catalogItem);
+        await _unitOfWork.CatalogItems.InsertOneAsync(CatalogItemDtoToCatalogItem.Convert(catalogItemDto, catalogType, catalogBrand));
         
-        _logger.LogInformation(string.Format(Logs.CatalogItemCreated, catalogItem.Name));
+        _logger.LogInformation(string.Format(Logs.CatalogItemCreated, catalogItemDto.Name));
 
-        return catalogItem;
+        return catalogItemDto;
     }
 }
