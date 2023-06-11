@@ -1,18 +1,19 @@
 namespace Catalog.Application.Mapper.Converters;
 
-public static class AddCatalogItemCommandToCatalogItem
+public class AddCatalogItemCommandToCatalogItemDto : ITypeConverter<AddCatalogItemCommand, CatalogItemDto>
 {
-    public static CatalogItem Convert(AddCatalogItemCommand source, CatalogType catalogType, CatalogBrand catalogBrand)
+    public CatalogItemDto Convert(AddCatalogItemCommand source, CatalogItemDto destination, ResolutionContext context)
     {
-        return new CatalogItem(
-            Guid.NewGuid(), 
-            source.Name, 
-            source.Description, 
-            source.ImageUri.Substring((source.ImageUri.LastIndexOf("/") + 1)), 
-            source.ImageUri,
-            catalogType,
-            catalogBrand,
-            source.Price,
-            source.Quantity);
+        return new CatalogItemDto()
+        {
+            Id = Guid.NewGuid(), 
+            Name = source.Name, 
+            Description = source.Description, 
+            ImageUri = source.ImageUri,
+            CatalogType = source.CatalogType,
+            CatalogBrand = source.CatalogBrand,
+            Price = source.Price,
+            Quantity = source.Quantity
+        };
     }
 }

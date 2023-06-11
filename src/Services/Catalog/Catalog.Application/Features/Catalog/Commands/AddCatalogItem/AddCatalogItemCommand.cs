@@ -1,6 +1,6 @@
 namespace Catalog.Application.Features.Catalog.Commands.AddCatalogItem;
 
-public class AddCatalogItemCommand : IRequest<CatalogItem>
+public class AddCatalogItemCommand : IRequest<CatalogItemDto>
 {
     public string Name { get; set; }
 	

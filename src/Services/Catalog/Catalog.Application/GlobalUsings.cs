@@ -13,3 +13,4 @@ global using Catalog.Application.Features.Catalog.Commands.AddCatalogItem;
 global using Catalog.Application.Extensions;
 global using Catalog.Application.Features.Catalog.Commands.UpdateCatalogItem;
 global using Catalog.Application.Behaviours;
+global using Catalog.Application.Models;

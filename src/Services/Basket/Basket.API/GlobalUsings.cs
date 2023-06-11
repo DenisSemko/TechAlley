@@ -7,3 +7,4 @@ global using Microsoft.AspNetCore.Mvc;
 global using Basket.Application.Features.Basket.Commands.UpdateBasketItems;
 global using Basket.Application.Features.Basket.Commands.CheckoutBasket;
 global using Basket.Application.Features.Basket.Commands.DeleteBasket;
+global using MassTransit;

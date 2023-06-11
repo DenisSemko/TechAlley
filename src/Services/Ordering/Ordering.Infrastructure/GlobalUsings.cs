@@ -1,0 +1,13 @@
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Configuration;
+global using Ordering.Domain.Common;
+global using Ordering.Domain.Repositories;
+global using Microsoft.EntityFrameworkCore;
+global using Ordering.Domain.Entities;
+global using Microsoft.EntityFrameworkCore;
+global using Ordering.Infrastructure.Persistence;
+global using System.Linq.Expressions;
+global using Ordering.Infrastructure.Repositories;
+global using Newtonsoft.Json;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Ordering.Infrastructure.Persistence.EntityConfigurations;
