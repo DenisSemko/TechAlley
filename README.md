@@ -67,5 +67,5 @@ Created by [@dench327](https://linkedin.com/in/https://www.linkedin.com/in/denis
 © 2023
 
 ## License
-> You can check out the full license [here](https://github.com/DenisSemko/TechAlley/blob/master/LICENSE.md)
+> You can check out the full license [here](https://github.com/DenisSemko/TechAlley/blob/master/LICENSE).
 This project is licensed under the terms of the MIT license.
