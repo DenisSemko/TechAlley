@@ -1,4 +1,4 @@
-<img src="https://github.com/DenisSemko/TechAlley/assets/53062219/e6eea9a1-6f3c-4e15-960a-89a89e076880" alt="logo" title="logo" align="right" height="100" />
+<img src="https://github.com/DenisSemko/TechAlley/blob/main/src/Web/client/public/img/logo.png" alt="logo" title="logo" align="right" height="100" />
 
 # TechAlley
 > Innovative e-commerce project specializing in high-quality headphones! 
@@ -36,7 +36,7 @@ At the heart of the project lies a powerful stack comprising .NET, React, and Mi
 
 ## Architecture
 
-<img width="1214" alt="Screenshot 2023-05-25 at 09 13 18" src="https://github.com/DenisSemko/TechAlley/assets/53062219/8749bfd9-a34b-4003-b890-d6f405937a26">
+<img width="1214" alt="Screenshot 2023-05-25 at 09 13 18" src="https://github.com/DenisSemko/TechAlley/assets/53062219/ded8860d-e674-4cd8-8ad7-e7271bf191ad">
 
 ## Features
 
