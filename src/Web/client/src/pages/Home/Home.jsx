@@ -1,12 +1,20 @@
 import React from 'react'
 import Slider from '../../components/Slider/Slider'
-import Contact from '../../components/Contact/Contact'
+import Newsletter from '../../components/Newsletter/Newsletter'
+import AboutProduct from '../../components/AboutProduct/AboutProduct'
+import PickOnProduct from '../../components/PickOnProduct/PickOnProduct'
+import Reviews from '../../components/Reviews/Reviews'
+import Footer from '../../components/Footer/Footer'
 
 const Home = () => {
   return (
     <div className='home'>
       <Slider />
-      <Contact />
+      <AboutProduct />
+      <PickOnProduct />
+      <Reviews />
+      <Newsletter />
+      <Footer />
     </div>
   )
 }

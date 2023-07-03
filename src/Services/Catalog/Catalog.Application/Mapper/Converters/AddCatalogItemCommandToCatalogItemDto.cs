@@ -9,7 +9,7 @@ public class AddCatalogItemCommandToCatalogItemDto : ITypeConverter<AddCatalogIt
             Id = Guid.NewGuid(), 
             Name = source.Name, 
             Description = source.Description, 
-            ImageUri = source.ImageUri,
+            ImageFileName = source.ImageFileName,
             CatalogType = source.CatalogType,
             CatalogBrand = source.CatalogBrand,
             Price = source.Price,

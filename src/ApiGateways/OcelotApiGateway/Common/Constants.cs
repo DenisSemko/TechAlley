@@ -6,5 +6,6 @@ public class Constants
     {
         public const string LoginPath = "Auth/login";
         public const string RegistrationPath = "Auth/registration";
+        public const string CatalogPath = "Catalog";
     }
 }

@@ -8,7 +8,7 @@ public class AddCatalogItemCommand : IRequest<CatalogItemDto>
 	
     public decimal Price { get; set; }
 
-    public string? ImageUri { get; set; }
+    public string? ImageFileName { get; set; }
 	
     public string CatalogType { get; set; }
 

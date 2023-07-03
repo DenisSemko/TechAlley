@@ -14,7 +14,7 @@ public class CatalogItemsToCatalogItemsDto : ITypeConverter<IReadOnlyList<Catalo
             Price = catalogItem.Price,
             CatalogBrand = catalogItem.CatalogBrand.Brand,
             CatalogType = catalogItem.CatalogType.Type,
-            ImageUri = catalogItem.ImageUri,
+            ImageFileName = catalogItem.ImageFileName,
             Quantity = catalogItem.Quantity
         }).ToList();
     }

@@ -38,6 +38,9 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 
     public async Task InsertOneAsync(T entity) => 
         await _collection.InsertOneAsync(entity);
+    
+    public async Task InsertManyAsync(List<T> entities) => 
+        await _collection.InsertManyAsync(entities);
 
     public async Task UpdateAsync(T entity)
     {
