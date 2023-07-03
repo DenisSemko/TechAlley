@@ -27,16 +27,18 @@ At the heart of the project lies a powerful stack comprising .NET, React, and Mi
 - Back-end: .NET 6, C#
 - Containerization: Docker
 - Databases: MSSQL, MongoDb, PostgreSQL, Redis
+- Microservices and Clean Architecture
 - API Gateway - Ocelot API
 - Identity - ASP.NET Identity, PostgreSQL database
 - Microservices Communication - RabbitMQ via MassTransit
-- Microservices and Clean Architectures
+- Filese Hub - AWS S3 Bucket
 - DDD principles, CQRS
 - Unit Testing
 
 ## Architecture
 
-<img width="1214" alt="Screenshot 2023-05-25 at 09 13 18" src="https://github.com/DenisSemko/TechAlley/assets/53062219/ded8860d-e674-4cd8-8ad7-e7271bf191ad">
+<img width="1213" alt="Screenshot 2023-07-03 at 15 48 52" src="https://github.com/DenisSemko/TechAlley/assets/53062219/222f634a-4e2f-40e9-b6ff-c196b1756236">
+
 
 ## Features
 
