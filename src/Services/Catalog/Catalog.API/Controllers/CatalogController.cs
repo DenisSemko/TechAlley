@@ -99,7 +99,7 @@ public class CatalogController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> UpdateOrder([FromBody] UpdateCatalogItemCommand command)
+    public async Task<ActionResult> Update([FromBody] UpdateCatalogItemCommand command)
     {
         _logger.Log(LogLevel.Information, "Executing CatalogItem Put");
         await _mediator.Send(command);
@@ -108,7 +108,7 @@ public class CatalogController : ControllerBase
     
     //it's an admin feature
     /// <summary>
-    /// Delete Catalog Item.
+    /// Deletes Catalog Item.
     /// </summary>
     /// <param name="id">
     /// Catalog Item's ID to delete it.
