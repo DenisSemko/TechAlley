@@ -13,7 +13,7 @@ const useFetch = (requestParams) => {
     const fetchData = async (params) => {
         setIsLoading(true);
         try {
-            const response = await axios.request(params);
+            const response = await axios.request({...params, withCredentials: true});
             setData(response.data);
         }
         catch (error) {
