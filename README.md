@@ -45,6 +45,8 @@ At the heart of the project lies a powerful stack comprising .NET, React, and Mi
 ## Screenshots
 
 ## Setup
+Project is built locally and it uses SSL certificate to run the Web App securely.
+
 Make sure you have installed and configured [docker](https://docs.docker.com/desktop/install/windows-install/) in your environment. After that, you need to run the below commands from the /src/ directory.
 
 `docker-compose build`
@@ -54,7 +56,10 @@ Make sure you have installed and configured [docker](https://docs.docker.com/des
 
 You need to download this repository and run it using Visual Studio 2019 or newer version or any other IDE that is suitable for you.
 
-You can run the Web application via installing all the dependencies with the command `npm install` and then using the command `npm start`!
+You can run the Web application via installing all the dependencies with the command `npm install`.
+
+After that, use the command `HTTPS=true SSL_CRT_FILE={CERT-PATH} SSL_KEY_FILE={KEY-PATH} npm start` for Linux/MacOS systems or `set HTTPS=true&&SSL_CRT_FILE={CERT-PATH}&&SSL_KEY_FILE={KEY-PATH}&&npm start` for Windows!
+
 
 > You need to make sure you have installed MSSQL, MongoDb, PostgreSQL, Redis & RabbitMQ locally or via Docker.
 
