@@ -21,6 +21,7 @@ public class TokenValidationMiddleware
         }
         else
         {
+            context.Request.Headers.Add("Authorization", context.Request.Cookies["Authorization"]);
             string? token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
             if (token is not null)

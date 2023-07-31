@@ -84,6 +84,16 @@ public class AuthController : ControllerBase
             Errors = authResponse.Errors
          });
       }
+      
+      Response.Cookies.Append("Authorization", authResponse.AccessToken, new CookieOptions
+      {
+         HttpOnly = true
+      });
+      
+      // Response.Cookies.Append("Refresh", authResponse.RefreshToken, new CookieOptions
+      // {
+      //    HttpOnly = true
+      // });
 
       return Ok(new AuthSuccessResponse
       {

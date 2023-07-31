@@ -9,9 +9,10 @@ builder.Services.AddCors(
     {
         options.AddPolicy(name: "AllowAll", builder =>
         {
-            builder.AllowAnyOrigin()
+            builder.WithOrigins("https://localhost:3000")
                 .AllowAnyHeader()
-                .AllowAnyMethod();
+                .AllowAnyMethod()
+                .AllowCredentials();
         });
     });
 
