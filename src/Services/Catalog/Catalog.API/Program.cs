@@ -9,6 +9,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(
+    options =>
+    {
+        options.AddPolicy(name: "AllowAll", builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+    });
+
 var app = builder.Build();
 
 app.MigrateDatabase(async (context, services) =>
@@ -29,5 +40,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowAll");
 
 app.Run();

@@ -11,8 +11,6 @@ public sealed class CatalogItem : BaseEntity
 		
     public string ImageFileName { get; private set; }
 		
-    public string ImageUri { get; private set; }
-	
     public CatalogType CatalogType { get; private set; }
 
     public Guid CatalogTypeId { get; private set; }
@@ -23,12 +21,11 @@ public sealed class CatalogItem : BaseEntity
 
     public int Quantity { get; private set; }
 
-    public CatalogItem(Guid id, string name, string description, string imageFileName, string imageUri, CatalogType catalogType, CatalogBrand catalogBrand, decimal price, int quantity) : base(id)
+    public CatalogItem(Guid id, string name, string description, string imageFileName, CatalogType catalogType, CatalogBrand catalogBrand, decimal price, int quantity) : base(id)
     {
 	    Name = name;
 	    Description = description;
 	    ImageFileName = imageFileName;
-	    ImageUri = imageUri;
 	    CatalogType = catalogType;
 	    CatalogBrand = catalogBrand;
 	    Price = price;
@@ -50,7 +47,7 @@ public sealed class CatalogItem : BaseEntity
 	           && Name == other.Name
 	           && Description == other.Description
 	           && Price == other.Price
-	           && ImageUri == other.ImageUri
+	           && ImageFileName == other.ImageFileName
 	           && CatalogType == other.CatalogType
 	           && CatalogBrand == other.CatalogBrand
 	           && Quantity == other.Quantity;

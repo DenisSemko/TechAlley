@@ -4,31 +4,62 @@ public static class CatalogSeed
 {
     public static async Task SeedData(this IServiceCollection services)
     {
-        using var serviceProvider = services.BuildServiceProvider();
-        using var serviceScope = serviceProvider.CreateScope();
-        var context = serviceScope.ServiceProvider.GetRequiredService<IUnitOfWork>();
+        using ServiceProvider serviceProvider = services.BuildServiceProvider();
+        using IServiceScope serviceScope = serviceProvider.CreateScope();
+        IUnitOfWork context = serviceScope.ServiceProvider.GetRequiredService<IUnitOfWork>();
         
-        var catalogTypesExist = await context.CatalogTypes.AnyAsync();
-        var catalogBrandsExist = await context.CatalogBrands.AnyAsync();
-        var catalogItemsExist = await context.CatalogItems.AnyAsync();
+        bool catalogTypesExist = await context.CatalogTypes.AnyAsync();
+        bool catalogBrandsExist = await context.CatalogBrands.AnyAsync();
+        bool catalogItemsExist = await context.CatalogItems.AnyAsync();
 
         if (catalogTypesExist && catalogBrandsExist && catalogItemsExist)
         {
             return;
         }
 
-        var catalogType = new CatalogType(Guid.NewGuid(), "Test Type");
-        var catalogBrand = new CatalogBrand(Guid.NewGuid(), "Test Brand");
-        
-        await context.CatalogTypes.InsertOneAsync(catalogType);
-        await context.CatalogBrands.InsertOneAsync(catalogBrand);
-        
-        var catalogItem = new CatalogItem(Guid.NewGuid(), "Test Item",
-            "Test Item", "image.png", "src/image.png",
-            catalogType,
-            catalogBrand,
-            0, 1);
+        List<CatalogType> catalogTypes = GenerateCatalogTypes();
+        List<CatalogBrand> catalogBrands = GenerateCatalogBrands();
 
-        await context.CatalogItems.InsertOneAsync(catalogItem);
+        await context.CatalogTypes.InsertManyAsync(catalogTypes);
+        await context.CatalogBrands.InsertManyAsync(catalogBrands);
+
+        List<CatalogItem> catalogItems = new()
+        {
+            new (Guid.NewGuid(), "Major IV",
+                "Meet Major IV, the iconic headphones from Marshall with 80+ solid hours of wireless playtime, wireless charging and a new, improved ergonomic design.", "marshall.png",
+                catalogTypes.FirstOrDefault(catalogType => catalogType.Type == "On-Ear")!,
+                catalogBrands.FirstOrDefault(catalogBrand => catalogBrand.Brand == "Marshall")!,
+                269, 350),
+            new (Guid.NewGuid(), "WH-XB910N ANC Wireless",
+                "Sony’s WH-XB910N rely on a powerful bass boost and effective noise cancelling. They are a comfortable and fairly flexible accessory for everyday mobile use.", "sony.png",
+                catalogTypes.FirstOrDefault(catalogType => catalogType.Type == "Over-Ear")!,
+                catalogBrands.FirstOrDefault(catalogBrand => catalogBrand.Brand == "Sony")!,
+                280, 134),
+            new (Guid.NewGuid(), "Solo3 Wireless Matte Black",
+                "Beats Solo3 Wireless on-ear headphones immerse you in rich, award-winning sound, everywhere you want to go.", "dre.png",
+                catalogTypes.FirstOrDefault(catalogType => catalogType.Type == "On-Ear")!,
+                catalogBrands.FirstOrDefault(catalogBrand => catalogBrand.Brand == "Beats By Dr.Dre")!,
+                200, 400)
+        };
+
+        await context.CatalogItems.InsertManyAsync(catalogItems);
+    }
+    private static List<CatalogType> GenerateCatalogTypes()
+    {
+        return new()
+        {
+            new CatalogType(Guid.NewGuid(), "Over-Ear"),
+            new CatalogType(Guid.NewGuid(), "On-Ear"),
+            new CatalogType(Guid.NewGuid(), "In-Ear"),
+        };
+    }
+    private static List<CatalogBrand> GenerateCatalogBrands()
+    {
+        return new()
+        {
+            new CatalogBrand(Guid.NewGuid(), "Sony"),
+            new CatalogBrand(Guid.NewGuid(), "Marshall"),
+            new CatalogBrand(Guid.NewGuid(), "Beats By Dr.Dre")
+        };
     }
 }

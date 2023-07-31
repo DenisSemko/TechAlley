@@ -29,6 +29,42 @@
       "UpstreamHttpMethod": [ "GET", "DELETE" ]
     },
     {
+      "DownstreamPathTemplate": "/api/CatalogWishlist",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7002"
+        }
+      ],
+      "UpstreamPathTemplate": "/CatalogWishlist",
+      "UpstreamHttpMethod": [ "POST", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/CatalogWishlist/{buyerId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7002"
+        }
+      ],
+      "UpstreamPathTemplate": "/CatalogWishlist/{buyerId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/CatalogWishlist/{buyerId}/{catalogItemId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7002"
+        }
+      ],
+      "UpstreamPathTemplate": "/CatalogWishlist/{buyerId}/{catalogItemId}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/Auth/login",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -51,6 +87,90 @@
       ],
       "UpstreamPathTemplate": "/Auth/registration",
       "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Basket/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7005"
+        }
+      ],
+      "UpstreamPathTemplate": "/Basket/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Basket",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7005"
+        }
+      ],
+      "UpstreamPathTemplate": "/Basket",
+      "UpstreamHttpMethod": [ "POST"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Basket/checkout",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7005"
+        }
+      ],
+      "UpstreamPathTemplate": "/Basket/checkout",
+      "UpstreamHttpMethod": [ "POST"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Order",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7015"
+        }
+      ],
+      "UpstreamPathTemplate": "/Order",
+      "UpstreamHttpMethod": [ "POST", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Order/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7015"
+        }
+      ],
+      "UpstreamPathTemplate": "/Order/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/FilesHub",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7085"
+        }
+      ],
+      "UpstreamPathTemplate": "/FilesHub",
+      "UpstreamHttpMethod": [ "POST"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/FilesHub/{fileName}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7085"
+        }
+      ],
+      "UpstreamPathTemplate": "/FilesHub/{fileName}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
     }
   ]
 }

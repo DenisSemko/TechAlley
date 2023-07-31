@@ -27,7 +27,6 @@ public class AddCatalogItemCommandHandlerTests
             Description = FakeData.ConfigureInvalidData().Description,
             CatalogBrand = FakeData.ConfigureInvalidData().CatalogBrand,
             CatalogType = FakeData.ConfigureInvalidData().CatalogType,
-            ImageUri = FakeData.ConfigureInvalidData().ImageUri,
             Price = FakeData.ConfigureInvalidData().Price,
             Quantity = FakeData.ConfigureInvalidData().Quantity
         };

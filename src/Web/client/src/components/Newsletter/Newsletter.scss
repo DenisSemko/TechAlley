@@ -1,0 +1,100 @@
+@import '../../../public/scss/_variables.scss';
+
+.newsletter-title {
+    display: flex;
+    justify-content: center;
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.025em;
+    color: $dark-text;
+}
+
+.newsletter-container {
+    background-image: url("../../../public/img/newsletter-bg.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    width: 80%;
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    padding: 1rem;
+
+    .border-box {
+        background-color: $white-text;
+        width: 80%;
+        height: 100%;
+
+        .border-box-title {
+            display: flex;
+            justify-content: center;
+            font-size: 2.3rem;
+            font-weight: 400;
+            letter-spacing: -.025em;
+            line-height: 1.2;
+        }
+
+        .border-box-subtitle {
+            color:#999;
+            display: flex;
+            justify-content: center;
+            margin-top: -15px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            grid-gap: 10px;
+            margin-top: 25px;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input[type="email"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+            width: 250px;
+            margin-top: 20px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ffcc00;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #ff9900;
+        }
+    }
+
+    .border-box:not(:last-child)::before {
+        content: "";
+        width: 0.1rem;
+        display: block;
+        height: 25%;
+        position: absolute;
+        margin-top: 20vh;
+        left: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        background-color: grey;
+    }
+}

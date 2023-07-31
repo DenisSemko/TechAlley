@@ -24,5 +24,8 @@ public class UnitOfWork : IUnitOfWork
     private ICatalogBrandRepository catalogBrandRepository;
     public ICatalogBrandRepository CatalogBrands => catalogBrandRepository ?? new CatalogBrandRepository(_mongoSettings);
     
+    private ICatalogWishlistRepository catalogWishlistRepository;
+    public ICatalogWishlistRepository CatalogWishlists => catalogWishlistRepository ?? new CatalogWishlistRepository(_mongoSettings);
+    
     #endregion
 }

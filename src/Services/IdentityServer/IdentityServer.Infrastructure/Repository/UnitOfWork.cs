@@ -19,13 +19,11 @@ public class UnitOfWork : IUnitOfWork
 
     #region Repositories
     
-    private IUserRepository userRepository;
-    public IUserRepository ApplicationUsers => userRepository ?? new UserRepository(_applicationContext);
+    private IUserRepository _userRepository;
+    public IUserRepository UserRepository => _userRepository ?? new UserRepository(_applicationContext);
     
     #endregion
 
-    public IUserRepository UserRepository { get; }
-    
     public async Task<bool> Complete() => 
         await _applicationContext.SaveChangesAsync() > 0;
 

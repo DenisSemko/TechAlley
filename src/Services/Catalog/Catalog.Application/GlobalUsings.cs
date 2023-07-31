@@ -14,3 +14,5 @@ global using Catalog.Application.Extensions;
 global using Catalog.Application.Features.Catalog.Commands.UpdateCatalogItem;
 global using Catalog.Application.Behaviours;
 global using Catalog.Application.Models;
+global using Catalog.Application.Features.Catalog.Commands.AddCatalogWishlist;
+global using Catalog.Application.Features.Catalog.Commands.UpdateCatalogWishlist;

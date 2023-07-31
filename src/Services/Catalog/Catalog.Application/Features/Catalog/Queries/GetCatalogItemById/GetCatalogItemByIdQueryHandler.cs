@@ -13,7 +13,7 @@ public class GetCatalogItemByIdQueryHandler : IRequestHandler<GetCatalogItemById
 
     public async Task<CatalogItemDto> Handle(GetCatalogItemByIdQuery request, CancellationToken cancellationToken)
     {
-        var catalogItem = await _unitOfWork.CatalogItems.GetByIdAsync(request.Id);
+        CatalogItem catalogItem = await _unitOfWork.CatalogItems.GetByIdAsync(request.Id);
         return _mapper.Map<CatalogItemDto>(catalogItem);
     }
 }

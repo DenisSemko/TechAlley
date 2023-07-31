@@ -9,8 +9,7 @@ const Slider = () => {
 
     const data = [
         "/img/first_slide.jpeg",
-        "/img/slider2.jpg",
-        "/img/second_slide.jpg"
+        "/img/slider2.jpg"
     ];
 
     const prevSlide = () => {

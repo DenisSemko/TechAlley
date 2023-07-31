@@ -12,6 +12,7 @@ public static class InfrastructureServiceRegistration
         services.AddScoped<ICatalogItemRepository, CatalogItemRepository>();
         services.AddScoped<ICatalogBrandRepository, CatalogBrandRepository>();
         services.AddScoped<ICatalogTypeRepository, CatalogTypeRepository>();
+        services.AddScoped<ICatalogWishlistRepository, CatalogWishlistRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
