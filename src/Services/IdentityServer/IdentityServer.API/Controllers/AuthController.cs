@@ -55,7 +55,7 @@ public class AuthController : ControllerBase
       return Ok(new AuthSuccessResponse
       {
          AccessToken = authResponse.AccessToken,
-         Username = authResponse.Username
+         UserId = authResponse.UserId
       });
    }
    
@@ -88,7 +88,7 @@ public class AuthController : ControllerBase
       return Ok(new AuthSuccessResponse
       {
          AccessToken = authResponse.AccessToken,
-         Username = authResponse.Username
+         UserId = authResponse.UserId
       });
    }
    #endregion

@@ -40,7 +40,7 @@ public class TokenService : ITokenService
         {
             Success = true,
             AccessToken = tokenHandler.WriteToken(token),
-            Username = user.UserName
+            UserId = user.Id
         };
     }
 }

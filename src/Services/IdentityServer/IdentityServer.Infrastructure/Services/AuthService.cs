@@ -34,7 +34,7 @@ public class AuthService : IAuthService
         //Work with Profile Image
         //newUser.ProfileImage = _profileImageService..
 
-        var createdUser = await _userManager.CreateAsync(newUser, registerModel.PasswordHash);
+        IdentityResult createdUser = await _userManager.CreateAsync(newUser, registerModel.PasswordHash);
 
         if (!createdUser.Succeeded)
         {
@@ -56,7 +56,6 @@ public class AuthService : IAuthService
     
     public async Task<AuthenticationResult> LoginAsync(LoginModel loginModel)
     {
-
         ApplicationUser user = await _userManager.FindByNameAsync(loginModel.Username);
 
         if (user is null)
