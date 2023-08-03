@@ -4,15 +4,15 @@ public class AuthService : IAuthService
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<IdentityRole<Guid>> _roleManager;
-    private readonly ITokenService _tokenService;
+    private readonly IAuthenticationResultService _authenticationResultService;
     private readonly IMapper _mapper;
     private readonly IJwtOptions _jwtOptions;
 
-    public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole<Guid>> roleManager, ITokenService tokenService, IMapper mapper, IJwtOptions jwtOptions)
+    public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole<Guid>> roleManager, IAuthenticationResultService authenticationResultService, IMapper mapper, IJwtOptions jwtOptions)
     {
         _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         _roleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager));
-        _tokenService = tokenService ?? throw new ArgumentNullException(nameof(tokenService));
+        _authenticationResultService = authenticationResultService ?? throw new ArgumentNullException(nameof(authenticationResultService));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         _jwtOptions = jwtOptions ?? throw new ArgumentNullException(nameof(jwtOptions));
     }
@@ -46,12 +46,10 @@ public class AuthService : IAuthService
 
         if (!await _roleManager.RoleExistsAsync(Constants.Roles.User))
             await _roleManager.CreateAsync(new IdentityRole<Guid>(Constants.Roles.User));
-        if (await _roleManager.RoleExistsAsync(Constants.Roles.User))
-        {
+        if (await _roleManager.RoleExistsAsync(Constants.Roles.User)) 
             await _userManager.AddToRoleAsync(newUser, Constants.Roles.User);
-        }
 
-        return _tokenService.GenerateAuthenticationResult(newUser);
+        return await _authenticationResultService.GenerateAuthenticationResult(newUser);
     }
     
     public async Task<AuthenticationResult> LoginAsync(LoginModel loginModel)
@@ -75,6 +73,6 @@ public class AuthService : IAuthService
             };
         }
 
-        return _tokenService.GenerateAuthenticationResult(user);
+        return await _authenticationResultService.GenerateAuthenticationResult(user);
     }
 }

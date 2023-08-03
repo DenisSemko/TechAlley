@@ -55,6 +55,7 @@ public class AuthController : ControllerBase
       return Ok(new AuthSuccessResponse
       {
          AccessToken = authResponse.AccessToken,
+         RefreshToken = authResponse.RefreshToken,
          UserId = authResponse.UserId
       });
    }
@@ -90,14 +91,15 @@ public class AuthController : ControllerBase
          HttpOnly = true
       });
       
-      // Response.Cookies.Append("Refresh", authResponse.RefreshToken, new CookieOptions
-      // {
-      //    HttpOnly = true
-      // });
+      Response.Cookies.Append("Refresh", authResponse.RefreshToken, new CookieOptions
+      {
+         HttpOnly = true
+      });
 
       return Ok(new AuthSuccessResponse
       {
          AccessToken = authResponse.AccessToken,
+         RefreshToken = authResponse.RefreshToken,
          UserId = authResponse.UserId
       });
    }

@@ -2,6 +2,5 @@ namespace IdentityServer.Application.Contracts;
 
 public interface ITokenService
 {
-    AuthenticationResult GenerateAuthenticationResult(ApplicationUser user);
-    
+    Task<string> Generate(ApplicationUser user);
 }

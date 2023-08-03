@@ -15,7 +15,10 @@ public static class InfrastructureServiceRegistration
         services.AddScoped<IUserRepository, UserRepository>();
         
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
+        services.AddScoped<IAccessTokenService, AccessTokenService>();
+        services.AddScoped<IRefreshTokenService, RefreshTokenService>();
+        services.AddScoped<IAuthenticationResultService, AuthenticationResultService>();
         services.AddScoped<IAuthService, AuthService>();
         
         services.AddAuthentication(x =>
