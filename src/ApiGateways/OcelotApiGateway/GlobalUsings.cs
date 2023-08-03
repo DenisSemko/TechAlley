@@ -5,3 +5,5 @@ global using OcelotApiGateway.Common;
 global using Ocelot.Cache.CacheManager;
 global using Ocelot.DependencyInjection;
 global using Ocelot.Middleware;
+global using Newtonsoft.Json;
+global using OcelotApiGateway.Models;

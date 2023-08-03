@@ -11,3 +11,7 @@ global using IdentityServer.Application.Contracts;
 global using IdentityServer.Application.Models;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Net;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
+global using IdentityServer.Domain.Entities;
+global using Microsoft.AspNetCore.Identity;

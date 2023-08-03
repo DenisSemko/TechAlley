@@ -10,16 +10,20 @@ public class AuthController : ControllerBase
    #region PrivateFields
    
    private readonly IAuthService _authService;
+   private readonly UserManager<ApplicationUser> _userManager;
+   private readonly IAuthenticationResultService _authenticationResultService;
    private readonly ILogger<AuthController> _logger;
    
    #endregion
    
    #region ctor
    
-   public AuthController(IAuthService authService, ILogger<AuthController> logger)
+   public AuthController(IAuthService authService, ILogger<AuthController> logger, UserManager<ApplicationUser> userManager, IAuthenticationResultService authenticationResultService)
    {
       _authService = authService ?? throw new ArgumentNullException(nameof(authService));
       _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+      _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+      _authenticationResultService = authenticationResultService ?? throw new ArgumentNullException(nameof(authenticationResultService));
    }
    
    #endregion
@@ -43,7 +47,6 @@ public class AuthController : ControllerBase
       _logger.Log(LogLevel.Information, "Executing Identity Register");
       
       AuthenticationResult authResponse = await _authService.RegisterAsync(registerModel);
-
       if (!authResponse.Success)
       {
          return BadRequest(new AuthFailedResponse
@@ -77,7 +80,6 @@ public class AuthController : ControllerBase
       _logger.Log(LogLevel.Information, "Executing Identity Login");
       
       AuthenticationResult authResponse = await _authService.LoginAsync(loginModel);
-
       if (!authResponse.Success)
       {
          return BadRequest(new AuthFailedResponse
@@ -101,6 +103,25 @@ public class AuthController : ControllerBase
          AccessToken = authResponse.AccessToken,
          RefreshToken = authResponse.RefreshToken,
          UserId = authResponse.UserId
+      });
+   }
+   
+   [HttpGet("{accessToken}")]
+   [ProducesResponseType(typeof(AuthSuccessResponse), (int)HttpStatusCode.OK)]
+   public async Task<ActionResult<AuthSuccessResponse>> RefreshTokens(string accessToken)
+   {
+      _logger.Log(LogLevel.Information, "Executing Identity Refresh Tokens");
+      
+      JwtSecurityTokenHandler tokenHandler = new ();
+      JwtSecurityToken accessTokenInfo = tokenHandler.ReadJwtToken(accessToken);
+      Claim? userNameClaim = accessTokenInfo.Claims.FirstOrDefault(claim => claim.Type == "name");
+      ApplicationUser existingUser = await _userManager.FindByNameAsync(userNameClaim.Value);
+      AuthenticationResult response = await _authenticationResultService.GenerateAuthenticationResult(existingUser);
+      
+      return Ok(new AuthSuccessResponse
+      {
+         AccessToken = response.AccessToken,
+         RefreshToken = response.RefreshToken,
       });
    }
    #endregion
