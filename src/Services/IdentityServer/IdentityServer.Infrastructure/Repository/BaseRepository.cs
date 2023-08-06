@@ -36,9 +36,9 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
         await _applicationContext.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(Expression<Func<T, bool>> predicate)
+    public async Task DeleteAsync(Guid id)
     {
-        T entity = await _applicationContext.Set<T>().FindAsync(predicate);
+        T entity = await _applicationContext.Set<T>().FindAsync(id);
         _applicationContext.Set<T>().Remove(entity);
         await _applicationContext.SaveChangesAsync();
     }

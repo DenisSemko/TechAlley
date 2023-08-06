@@ -13,4 +13,10 @@ public static class Constants
     {
         public const string User = "User";
     }
+    
+    public class Logs
+    {
+        public const string UserDeleted = "User {0} is successfully deleted";
+        public const string UserUpdated = "User {0} is successfully updated";
+    }
 }

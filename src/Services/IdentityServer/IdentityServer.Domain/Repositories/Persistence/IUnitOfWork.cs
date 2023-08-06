@@ -2,7 +2,7 @@
 {
     public interface IUnitOfWork
     {
-        IUserRepository UserRepository { get; }
+        IUserRepository Users { get; }
         Task<bool> Complete();
         bool HasChanges();
     }

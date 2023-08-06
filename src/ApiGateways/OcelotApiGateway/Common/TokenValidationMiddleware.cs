@@ -14,7 +14,8 @@ public class TokenValidationMiddleware
     public async Task Invoke(HttpContext context)
     {
         if (context.Request.Path.Value.Contains(Constants.AuthRequestPaths.LoginPath) ||
-            context.Request.Path.Value.Contains(Constants.AuthRequestPaths.RegistrationPath))
+            context.Request.Path.Value.Contains(Constants.AuthRequestPaths.RegistrationPath) ||
+            context.Request.Path.Value.Contains(Constants.AuthRequestPaths.CatalogPath))
         {
             await _next(context);
         }

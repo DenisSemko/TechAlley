@@ -1,5 +1,3 @@
-using System.Linq.Expressions;
-
 namespace Ordering.Domain.Repositories;
 
 public interface IBaseRepository <T> where T : class
