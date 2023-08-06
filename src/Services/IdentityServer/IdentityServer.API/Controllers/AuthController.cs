@@ -106,6 +106,15 @@ public class AuthController : ControllerBase
       });
    }
    
+   /// <summary>
+   /// Refreshes user's tokens.
+   /// </summary>
+   /// <param name="accessToken">
+   /// User's access token.
+   /// </param>
+   /// <returns>
+   /// Returns AuthSuccessResponse model.
+   /// </returns>
    [HttpGet("{accessToken}")]
    [ProducesResponseType(typeof(AuthSuccessResponse), (int)HttpStatusCode.OK)]
    public async Task<ActionResult<AuthSuccessResponse>> RefreshTokens(string accessToken)

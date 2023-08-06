@@ -15,3 +15,7 @@ global using System.IdentityModel.Tokens.Jwt;
 global using System.Security.Claims;
 global using IdentityServer.Domain.Entities;
 global using Microsoft.AspNetCore.Identity;
+global using MediatR;
+global using IdentityServer.Application.Features.User.Commands.DeleteUser;
+global using IdentityServer.Application.Features.User.Commands.UpdateUser;
+global using IdentityServer.Application.Features.User.Queries.GetUserById;

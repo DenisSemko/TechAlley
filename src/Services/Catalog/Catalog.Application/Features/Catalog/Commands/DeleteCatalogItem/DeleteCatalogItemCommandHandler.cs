@@ -13,13 +13,7 @@ public class DeleteCatalogItemCommandHandler : IRequestHandler<DeleteCatalogItem
 
     public async Task Handle(DeleteCatalogItemCommand request, CancellationToken cancellationToken)
     {
-        CatalogItem catalogItem = await _unitOfWork.CatalogItems.GetByIdAsync(request.Id);
-        if (catalogItem is null)
-        {                
-            throw new KeyNotFoundException(nameof(CatalogItem));
-        }
-
         await _unitOfWork.CatalogItems.DeleteAsync(item => item.Id == request.Id);
-        _logger.LogInformation(Logs.CatalogItemDeleted, catalogItem.Name);
+        _logger.LogInformation(Logs.CatalogItemDeleted, request.Id);
     }
 }

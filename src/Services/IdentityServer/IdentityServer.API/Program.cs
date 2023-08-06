@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 builder.Configuration.AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "../../../SharedConfig", "Config.json"), true, true);
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddApplicationServices();
 builder.Services.Configure<JwtOptions>(
     builder.Configuration.GetSection("JWT"));
 builder.Services.AddSingleton<IJwtOptions>(serviceProvider =>

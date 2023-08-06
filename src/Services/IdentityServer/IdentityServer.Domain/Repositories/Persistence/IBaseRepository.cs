@@ -10,7 +10,7 @@
         Task<bool> AnyAsync();
         Task InsertOneAsync(T entity);
         Task UpdateAsync(T entity);
-        Task DeleteAsync(Expression<Func<T, bool>> predicate);
+        Task DeleteAsync(Guid id);
 
         #endregion
     }

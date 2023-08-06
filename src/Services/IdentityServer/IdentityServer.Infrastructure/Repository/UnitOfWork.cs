@@ -20,7 +20,7 @@ public class UnitOfWork : IUnitOfWork
     #region Repositories
     
     private IUserRepository _userRepository;
-    public IUserRepository UserRepository => _userRepository ?? new UserRepository(_applicationContext);
+    public IUserRepository Users => _userRepository ?? new UserRepository(_applicationContext);
     
     #endregion
 

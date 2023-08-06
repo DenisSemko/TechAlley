@@ -57,10 +57,10 @@ public class CatalogController : ControllerBase
     [ProducesResponseType(typeof(CatalogItemDto), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<CatalogItemDto>> GetById(Guid id)
     {
-        var query = new GetCatalogItemByIdQuery() { Id = id };
+        GetCatalogItemByIdQuery query = new () { Id = id };
         
         _logger.Log(LogLevel.Information, "Executing CatalogItem GetById");
-        var catalogItem = await _mediator.Send(query);
+        CatalogItemDto catalogItem = await _mediator.Send(query);
 
         return Ok(catalogItem);
     }
@@ -80,7 +80,7 @@ public class CatalogController : ControllerBase
     public async Task<ActionResult<CatalogItemDto>> Post([FromBody] AddCatalogItemCommand command)
     {
         _logger.Log(LogLevel.Information, "Executing CatalogItem Post");
-        var result = await _mediator.Send(command);
+        CatalogItemDto result = await _mediator.Send(command);
         
         return CreatedAtAction(nameof(Post), result);
     }
@@ -122,7 +122,7 @@ public class CatalogController : ControllerBase
     [ProducesDefaultResponseType]
     public async Task<ActionResult> Delete(Guid id)
     {
-        var command = new DeleteCatalogItemCommand() { Id = id };
+        DeleteCatalogItemCommand command = new () { Id = id };
         
         _logger.Log(LogLevel.Information, "Executing CatalogItem Delete");
         
