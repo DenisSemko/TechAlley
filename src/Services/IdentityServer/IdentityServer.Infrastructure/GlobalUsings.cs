@@ -7,7 +7,7 @@ global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
 global using System.Linq.Expressions;
-global using IdentityServer.Domain.Repositories.Persistence;
+global using IdentityServer.Application.Repositories;
 global using IdentityServer.Infrastructure.Repository;
 global using Microsoft.EntityFrameworkCore.Design;
 global using System.IdentityModel.Tokens.Jwt;

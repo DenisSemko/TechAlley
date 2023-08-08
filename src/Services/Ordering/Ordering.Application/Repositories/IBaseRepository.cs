@@ -1,4 +1,4 @@
-namespace Ordering.Domain.Repositories;
+namespace Ordering.Application.Repositories;
 
 public interface IBaseRepository <T> where T : class
 {

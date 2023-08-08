@@ -1,9 +1,8 @@
 global using Catalog.Domain.Common;
 global using Catalog.Domain.Entities;
-global using Catalog.Domain.Repositories.Persistence;
+global using Catalog.Application.Repositories;
 global using Catalog.Infrastructure.DbSettings;
 global using Catalog.Infrastructure.DbSettings;
-global using Catalog.Infrastructure.Persistence;
 global using Catalog.Infrastructure.Repositories;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;

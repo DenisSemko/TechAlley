@@ -1,4 +1,4 @@
-﻿namespace IdentityServer.Domain.Repositories.Persistence
+﻿namespace IdentityServer.Application.Repositories
 {
     public interface IUserRepository : IBaseRepository<ApplicationUser>
     {

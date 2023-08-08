@@ -1,5 +1,3 @@
-using IdentityServer.Domain.Repositories.Persistence;
-
 namespace IdentityServer.Application.Features.User.Queries.GetUserById;
 
 public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, ApplicationUserDto>

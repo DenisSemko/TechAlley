@@ -1,4 +1,4 @@
-﻿namespace IdentityServer.Domain.Repositories.Persistence
+﻿namespace IdentityServer.Application.Repositories
 {
     public interface IBaseRepository<T> where T : class
     {
