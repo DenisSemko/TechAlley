@@ -9,7 +9,7 @@ global using Catalog.Application.Features.Catalog.Commands.DeleteCatalogItem;
 global using Catalog.Application.Features.Catalog.Queries.GetCatalogItemById;
 global using Catalog.API.Extensions;
 global using Catalog.Infrastructure.Persistence;
-global using Catalog.Domain.Repositories.Persistence;
+global using Catalog.Application.Repositories;
 global using MongoDB.Driver;
 global using Catalog.Application.Features.Catalog.Commands.UpdateCatalogItem;
 global using Catalog.Application.Models;

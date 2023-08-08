@@ -1,4 +1,4 @@
-namespace Basket.Domain.Repositories.Persistence;
+namespace Basket.Application.Repositories;
 
 public interface IBaseRepository<T> where T : BaseEntity
 {

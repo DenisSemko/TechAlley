@@ -1,6 +1,6 @@
 global using MediatR;
 global using AutoMapper;
-global using Basket.Domain.Repositories.Persistence;
+global using Basket.Application.Repositories;
 global using System.Reflection;
 global using FluentValidation;
 global using Microsoft.Extensions.DependencyInjection;
@@ -14,3 +14,4 @@ global using Basket.Application.Features.Basket.Commands.UpdateBasketItems;
 global using EventBus.Messages.Events;
 global using Basket.Application.Features.Basket.Commands.CheckoutBasket;
 global using MassTransit;
+global using Basket.Domain.Common;

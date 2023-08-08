@@ -1,6 +1,3 @@
-using AutoMapper;
-using Ordering.Domain.Repositories;
-
 namespace Ordering.Application.Features.Ordering.Queries.GetOrdersByBuyerId;
 
 public class GetOrdersByBuyerIdQueryHandler : IRequestHandler<GetOrdersByBuyerIdQuery, List<OrderDto>>

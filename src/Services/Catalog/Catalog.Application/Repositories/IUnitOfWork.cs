@@ -1,4 +1,4 @@
-namespace Catalog.Domain.Repositories.Persistence;
+namespace Catalog.Application.Repositories;
 
 public interface IUnitOfWork
 {
