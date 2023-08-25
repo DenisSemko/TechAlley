@@ -27,7 +27,7 @@ public class AddCatalogWishlistCommandHandler : IRequestHandler<AddCatalogWishli
         
         await _unitOfWork.CatalogWishlists.InsertOneAsync(new CatalogWishlist(catalogWishlistDto.Id, catalogItems, catalogWishlistDto.BuyerId));
         
-        _logger.LogInformation(string.Format(Logs.CatalogWishlistCreated, catalogWishlistDto.Id));
+        _logger.LogInformation(string.Format(Constants.Logs.CatalogWishlistCreated, catalogWishlistDto.Id));
 
         return catalogWishlistDto;
     }

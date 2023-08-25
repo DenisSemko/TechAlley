@@ -1,5 +1,3 @@
-using NotImplementedException = System.NotImplementedException;
-
 namespace Catalog.Application.Mapper.Converters;
 
 public class CatalogItemsToCatalogItemsDto : ITypeConverter<IReadOnlyList<CatalogItem>, List<CatalogItemDto>>

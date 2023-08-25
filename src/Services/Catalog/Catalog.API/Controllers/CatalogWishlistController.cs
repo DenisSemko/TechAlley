@@ -1,8 +1,3 @@
-using Catalog.Application.Features.Catalog.Commands.AddCatalogWishlist;
-using Catalog.Application.Features.Catalog.Commands.DeleteCatalogItemFromCatalogWishlist;
-using Catalog.Application.Features.Catalog.Commands.UpdateCatalogWishlist;
-using Catalog.Application.Features.Catalog.Queries.GetCatalogItemFromWishlist;
-
 namespace Catalog.API.Controllers;
 
 /// <summary>
