@@ -36,7 +36,7 @@ public class UpdateCatalogWishlistCommandHandler : IRequestHandler<UpdateCatalog
 
         await _unitOfWork.CatalogWishlists.UpdateAsync(updatedItem);
         
-        _logger.LogInformation(Logs.CatalogWishlistUpdated, updatedItem.Id);
+        _logger.LogInformation(Constants.Logs.CatalogWishlistUpdated, updatedItem.Id);
 
         return Unit.Value;
     }

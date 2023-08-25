@@ -14,6 +14,6 @@ public class DeleteCatalogItemCommandHandler : IRequestHandler<DeleteCatalogItem
     public async Task Handle(DeleteCatalogItemCommand request, CancellationToken cancellationToken)
     {
         await _unitOfWork.CatalogItems.DeleteAsync(item => item.Id == request.Id);
-        _logger.LogInformation(Logs.CatalogItemDeleted, request.Id);
+        _logger.LogInformation(Constants.Logs.CatalogItemDeleted, request.Id);
     }
 }

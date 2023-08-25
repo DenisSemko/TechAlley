@@ -21,7 +21,7 @@ public class AddCatalogItemCommandHandler : IRequestHandler<AddCatalogItemComman
         
         await _unitOfWork.CatalogItems.InsertOneAsync(CatalogItemDtoToCatalogItem.Convert(catalogItemDto, catalogType, catalogBrand));
         
-        _logger.LogInformation(string.Format(Logs.CatalogItemCreated, catalogItemDto.Name));
+        _logger.LogInformation(string.Format(Constants.Logs.CatalogItemCreated, catalogItemDto.Name));
 
         return catalogItemDto;
     }

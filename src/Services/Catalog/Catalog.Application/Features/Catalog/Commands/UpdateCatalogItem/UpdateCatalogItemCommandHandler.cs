@@ -25,7 +25,7 @@ public class UpdateCatalogItemCommandHandler : IRequestHandler<UpdateCatalogItem
 
         await _unitOfWork.CatalogItems.UpdateAsync(updatedItem);
         
-        _logger.LogInformation(Logs.CatalogItemUpdated, catalogItem.Name);
+        _logger.LogInformation(Constants.Logs.CatalogItemUpdated, catalogItem.Name);
 
         return Unit.Value;
     }

@@ -25,13 +25,13 @@ public class DeleteCatalogItemFromWishlistCommandHandler : IRequestHandler<Delet
         if (isUpdatedCatalogWishlist)
         {
             await _unitOfWork.CatalogWishlists.UpdateAsync(catalogWishlist);
-            _logger.LogInformation(Logs.CatalogWishlistUpdated, catalogWishlist.Id);
+            _logger.LogInformation(Constants.Logs.CatalogWishlistUpdated, catalogWishlist.Id);
         }
 
         if (catalogWishlist.CatalogItems.Count == 0)
         {
             await _unitOfWork.CatalogWishlists.DeleteAsync(wishlist => wishlist.Id == catalogWishlist.Id);
-            _logger.LogInformation(Logs.CatalogWishlistDeleted, catalogWishlist.Id);
+            _logger.LogInformation(Constants.Logs.CatalogWishlistDeleted, catalogWishlist.Id);
         }
     }
 }
