@@ -6,6 +6,8 @@ public class CatalogItemProfile : Profile
     {
         CreateMap<IReadOnlyList<CatalogItem>, List<CatalogItemDto>>()
             .ConvertUsing(new CatalogItemsToCatalogItemsDto());
+        CreateMap<CatalogItem, CatalogItemDto>()
+            .ConvertUsing(new CatalogItemToCatalogItemDto());
         CreateMap<AddCatalogItemCommand, CatalogItemDto>()
             .ConvertUsing(new AddCatalogItemCommandToCatalogItemDto());
         CreateMap<CatalogType, CatalogTypeDto>()

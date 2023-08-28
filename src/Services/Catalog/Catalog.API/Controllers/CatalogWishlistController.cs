@@ -10,7 +10,6 @@ public class CatalogWishlistController : ControllerBase
     #region PrivateFields
 
     private readonly IMediator _mediator;
-    private readonly ILogger<CatalogWishlistController> _logger;
 
     #endregion
     
@@ -19,7 +18,6 @@ public class CatalogWishlistController : ControllerBase
     public CatalogWishlistController(IMediator mediator, ILogger<CatalogWishlistController> logger)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     #endregion
@@ -39,7 +37,6 @@ public class CatalogWishlistController : ControllerBase
     {
         GetCatalogWishlistByBuyerIdQuery query = new () { BuyerId = buyerId };
         
-        _logger.Log(LogLevel.Information, "Executing CatalogWishlist GetByBuyerId");
         CatalogWishlistDto catalogWishlist = await _mediator.Send(query);
 
         return Ok(catalogWishlist);
@@ -63,7 +60,6 @@ public class CatalogWishlistController : ControllerBase
     {
         GetCatalogItemFromWishlistQuery query = new () { BuyerId = buyerId, CatalogItemId = catalogItemId};
         
-        _logger.Log(LogLevel.Information, "Executing CatalogWishlist GetCatalogItem");
         bool isCatalogItemFound = await _mediator.Send(query);
 
         return Ok(isCatalogItemFound);
@@ -82,7 +78,6 @@ public class CatalogWishlistController : ControllerBase
     [ProducesResponseType((int)HttpStatusCode.Created)]
     public async Task<ActionResult<CatalogWishlistDto>> Post([FromBody] AddCatalogWishlistCommand command)
     {
-        _logger.Log(LogLevel.Information, "Executing CatalogWishlist Post");
         CatalogWishlistDto result = await _mediator.Send(command);
         
         return CreatedAtAction(nameof(Post), result);
@@ -103,7 +98,6 @@ public class CatalogWishlistController : ControllerBase
     [ProducesDefaultResponseType]
     public async Task<ActionResult> Update([FromBody] UpdateCatalogWishlistCommand command)
     {
-        _logger.Log(LogLevel.Information, "Executing CatalogWishlist Put");
         await _mediator.Send(command);
         return NoContent();
     }
@@ -127,8 +121,6 @@ public class CatalogWishlistController : ControllerBase
     public async Task<ActionResult> DeleteCatalogItemFromWishlist(Guid buyerId, Guid catalogItemId)
     {
         DeleteCatalogItemFromWishlistCommand command = new () { BuyerId = buyerId, CatalogItemId = catalogItemId};
-        
-        _logger.Log(LogLevel.Information, "Executing CatalogItem Delete from the Wishlist");
         
         await _mediator.Send(command);
         return NoContent();

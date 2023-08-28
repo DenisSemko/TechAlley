@@ -10,7 +10,6 @@ public class CatalogController : ControllerBase
     #region PrivateFields
 
     private readonly IMediator _mediator;
-    private readonly ILogger<CatalogController> _logger;
 
     #endregion
 
@@ -19,7 +18,6 @@ public class CatalogController : ControllerBase
     public CatalogController(IMediator mediator, ILogger<CatalogController> logger)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     #endregion
@@ -38,7 +36,6 @@ public class CatalogController : ControllerBase
     {
         GetCatalogItemsQuery query = new GetCatalogItemsQuery();
         
-        _logger.Log(LogLevel.Information, "Executing CatalogItem Get");
         List<CatalogItemDto> catalogItems = await _mediator.Send(query);
 
         return Ok(catalogItems);
@@ -59,7 +56,6 @@ public class CatalogController : ControllerBase
     {
         GetCatalogItemByIdQuery query = new () { Id = id };
         
-        _logger.Log(LogLevel.Information, "Executing CatalogItem GetById");
         CatalogItemDto catalogItem = await _mediator.Send(query);
 
         return Ok(catalogItem);
@@ -79,7 +75,6 @@ public class CatalogController : ControllerBase
     [ProducesResponseType((int)HttpStatusCode.Created)]
     public async Task<ActionResult<CatalogItemDto>> Post([FromBody] AddCatalogItemCommand command)
     {
-        _logger.Log(LogLevel.Information, "Executing CatalogItem Post");
         CatalogItemDto result = await _mediator.Send(command);
         
         return CreatedAtAction(nameof(Post), result);
@@ -101,7 +96,6 @@ public class CatalogController : ControllerBase
     [ProducesDefaultResponseType]
     public async Task<ActionResult> Update([FromBody] UpdateCatalogItemCommand command)
     {
-        _logger.Log(LogLevel.Information, "Executing CatalogItem Put");
         await _mediator.Send(command);
         return NoContent();
     }
@@ -124,12 +118,9 @@ public class CatalogController : ControllerBase
     {
         DeleteCatalogItemCommand command = new () { Id = id };
         
-        _logger.Log(LogLevel.Information, "Executing CatalogItem Delete");
-        
         await _mediator.Send(command);
         return NoContent();
     }
     
     #endregion
-
 }

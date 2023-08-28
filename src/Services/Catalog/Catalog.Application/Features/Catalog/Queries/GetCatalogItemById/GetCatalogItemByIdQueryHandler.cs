@@ -14,6 +14,12 @@ public class GetCatalogItemByIdQueryHandler : IRequestHandler<GetCatalogItemById
     public async Task<CatalogItemDto> Handle(GetCatalogItemByIdQuery request, CancellationToken cancellationToken)
     {
         CatalogItem catalogItem = await _unitOfWork.CatalogItems.GetByIdAsync(request.Id);
+        
+        if (catalogItem is null)
+        {
+            throw new KeyNotFoundException();
+        }
+        
         return _mapper.Map<CatalogItemDto>(catalogItem);
     }
 }
