@@ -1,5 +1,6 @@
 global using Catalog.API.Extensions;
 global using Catalog.Application.Behaviours;
+global using Catalog.Application.Common.Helpers;
 global using Catalog.Application.Features.Catalog.Commands.AddCatalogItem;
 global using Catalog.Application.Features.Catalog.Commands.AddCatalogWishlist;
 global using Catalog.Application.Features.Catalog.Commands.DeleteCatalogItem;

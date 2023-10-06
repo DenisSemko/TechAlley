@@ -78,7 +78,7 @@ public class BasketController : Controller
     [HttpPost("checkout")]
     [ProducesResponseType((int)HttpStatusCode.Accepted)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-    public async Task<ActionResult> Post([FromBody] CheckoutBasketCommand command)
+    public async Task<ActionResult> Checkout([FromBody] CheckoutBasketCommand command)
     {
         _logger.Log(LogLevel.Information, "Executing Basket Checkout");
         var result = await _mediator.Send(command);

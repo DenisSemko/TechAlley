@@ -1,6 +1,7 @@
+global using Catalog.Application.Common.Helpers;
+global using Catalog.Application.Repositories;
 global using Catalog.Domain.Common;
 global using Catalog.Domain.Entities;
-global using Catalog.Application.Repositories;
 global using Catalog.Infrastructure.DbSettings;
 global using Catalog.Infrastructure.DbSettings;
 global using Catalog.Infrastructure.Repositories;

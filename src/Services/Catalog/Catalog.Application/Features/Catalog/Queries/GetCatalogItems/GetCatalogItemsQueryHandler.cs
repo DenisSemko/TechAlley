@@ -1,6 +1,6 @@
 namespace Catalog.Application.Features.Catalog.Queries.GetCatalogItems;
 
-public class GetCatalogItemsQueryHandler : IRequestHandler<GetCatalogItemsQuery, List<CatalogItemDto>>
+public class GetCatalogItemsQueryHandler : IRequestHandler<GetCatalogItemsQuery, PagedList<CatalogItemDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -11,9 +11,9 @@ public class GetCatalogItemsQueryHandler : IRequestHandler<GetCatalogItemsQuery,
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<List<CatalogItemDto>> Handle(GetCatalogItemsQuery request, CancellationToken cancellationToken)
+    public async Task<PagedList<CatalogItemDto>> Handle(GetCatalogItemsQuery request, CancellationToken cancellationToken)
     {
-        IReadOnlyList<CatalogItem> catalogItems = await _unitOfWork.CatalogItems.GetAllAsync();
-        return _mapper.Map<List<CatalogItemDto>>(catalogItems);
+        PagedList<CatalogItem> catalogItems = await _unitOfWork.CatalogItems.GetPagedAsync(request.PageNumber, request.PageSize);
+        return _mapper.Map<PagedList<CatalogItemDto>>(catalogItems);
     }
 }
