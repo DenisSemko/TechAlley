@@ -1,10 +1,11 @@
 namespace Catalog.Application.Mapper.Converters;
 
-public class CatalogItemsToCatalogItemsDto : ITypeConverter<IReadOnlyList<CatalogItem>, List<CatalogItemDto>>
+public class CatalogItemsToCatalogItemsDto : ITypeConverter<PagedList<CatalogItem>, PagedList<CatalogItemDto>>
 {
-    public List<CatalogItemDto> Convert(IReadOnlyList<CatalogItem> source, List<CatalogItemDto> destination, ResolutionContext context)
+    public PagedList<CatalogItemDto> Convert(PagedList<CatalogItem> source, PagedList<CatalogItemDto> destination, ResolutionContext context)
     {
-        return source.Select(catalogItem => new CatalogItemDto()
+        List<CatalogItemDto> catalogItemDtos = new();
+        catalogItemDtos.AddRange(source.Select(catalogItem => new CatalogItemDto()
         {
             Id = catalogItem.Id,
             Name = catalogItem.Name,
@@ -14,6 +15,7 @@ public class CatalogItemsToCatalogItemsDto : ITypeConverter<IReadOnlyList<Catalo
             CatalogType = catalogItem.CatalogType.Type,
             ImageFileName = catalogItem.ImageFileName,
             Quantity = catalogItem.Quantity
-        }).ToList();
+        }).ToList());
+        return new PagedList<CatalogItemDto>(catalogItemDtos, source.CurrentPage, source.PageSize, source.TotalRecords);
     }
 }

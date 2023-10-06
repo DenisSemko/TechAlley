@@ -1,5 +1,6 @@
 global using AutoMapper;
 global using Catalog.Application.Behaviours;
+global using Catalog.Application.Common.Helpers;
 global using Catalog.Application.Common;
 global using Catalog.Application.Extensions;
 global using Catalog.Application.Features.Catalog.Commands.AddCatalogItem;

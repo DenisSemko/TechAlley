@@ -5,6 +5,7 @@ public interface IBaseRepository<T> where T : BaseEntity
     #region Methods
     
     Task<IReadOnlyList<T>> GetAllAsync();
+    Task<PagedList<T>> GetPagedAsync(int pageNumber, int pageSize);
     Task<T> GetAsync(Expression<Func<T, bool>> predicate);
     Task<T> GetByIdAsync(Guid id);
     Task<bool> AnyAsync();

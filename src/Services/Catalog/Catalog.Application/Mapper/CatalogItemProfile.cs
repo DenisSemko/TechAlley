@@ -4,7 +4,7 @@ public class CatalogItemProfile : Profile
 {
     public CatalogItemProfile()
     {
-        CreateMap<IReadOnlyList<CatalogItem>, List<CatalogItemDto>>()
+        CreateMap<PagedList<CatalogItem>, PagedList<CatalogItemDto>>()
             .ConvertUsing(new CatalogItemsToCatalogItemsDto());
         CreateMap<CatalogItem, CatalogItemDto>()
             .ConvertUsing(new CatalogItemToCatalogItemDto());

@@ -20,6 +20,19 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     
     public async Task<IReadOnlyList<T>> GetAllAsync() => 
         await _collection.Find(_ => true).ToListAsync();
+    
+    public async Task<PagedList<T>> GetPagedAsync(int pageNumber, int pageSize)
+    {
+        long totalCount = await _collection.CountDocumentsAsync(FilterDefinition<T>.Empty);
+
+        List<T> items = await _collection
+            .Find(FilterDefinition<T>.Empty)
+            .Skip((pageNumber - 1) * pageSize)
+            .Limit(pageSize)
+            .ToListAsync();
+
+        return new PagedList<T>(items, Convert.ToInt32(totalCount), pageNumber, pageSize);
+    }
 
     public async Task<T> GetAsync(Expression<Func<T, bool>> predicate) =>
         await _collection.Find(predicate).SingleOrDefaultAsync();
