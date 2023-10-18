@@ -69,7 +69,7 @@ After that, use the command `HTTPS=true SSL_CRT_FILE={CERT-PATH} SSL_KEY_FILE={K
 _v1.0 has not been finished yet_
 
 ## Contact
-Created by [@dench327](https://linkedin.com/in/https://www.linkedin.com/in/denis-semko-551b91191) - feel free to contact me!
+Created by [@dench327](https://www.linkedin.com/in/denis-semko-551b91191) - feel free to contact me!
 
 © 2023
 
