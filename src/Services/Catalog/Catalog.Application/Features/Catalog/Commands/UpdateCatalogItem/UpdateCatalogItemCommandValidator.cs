@@ -1,6 +1,6 @@
 namespace Catalog.Application.Features.Catalog.Commands.UpdateCatalogItem;
 
-public class UpdateCatalogItemCommandValidator : AbstractValidator<AddCatalogItemCommand>
+public class UpdateCatalogItemCommandValidator : AbstractValidator<UpdateCatalogItemCommand>
 {
     private readonly IUnitOfWork _unitOfWork;
     public UpdateCatalogItemCommandValidator(IUnitOfWork unitOfWork)

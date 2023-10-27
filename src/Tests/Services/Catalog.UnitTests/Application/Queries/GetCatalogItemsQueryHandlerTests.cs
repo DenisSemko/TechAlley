@@ -1,42 +1,44 @@
-using AutoMapper;
-using Catalog.Domain.Entities;
-
 namespace Catalog.UnitTests.Application.Queries;
 
 public class GetCatalogItemsQueryHandlerTests
 {
     private readonly Mock<IUnitOfWork> _mockUnitOfWork;
-    private readonly Mock<ICatalogItemRepository> _mockCatalogItemRepository;
-    private readonly Mock<IMapper> _mockMapper;
+    private readonly IMapper _mapper;
 
     public GetCatalogItemsQueryHandlerTests()
     {
-        _mockUnitOfWork = new Mock<IUnitOfWork>();
-        _mockCatalogItemRepository = new Mock<ICatalogItemRepository>();
-        _mockMapper = new Mock<IMapper>();
-        _mockUnitOfWork.Setup(uow => uow.CatalogItems).Returns(_mockCatalogItemRepository.Object);
+        ICatalogItemTestConfiguration testConfiguration = new CatalogItemTestConfiguration();
+        _mockUnitOfWork = testConfiguration.MockUnitOfWork();
+        _mapper = testConfiguration.DefineMapper();
     }
 
     [Fact]
-    public async Task Handle_GetCatalogItems_ReturnsListOfItems()
+    public async Task Handle_GetCatalogItems_ReturnsArgumentOutOfRangeException()
     {
-        //Arrange
-        IReadOnlyList<CatalogItem> catalogItems = new List<CatalogItem>();
-        GetCatalogItemsQuery query = new GetCatalogItemsQuery();
+        GetCatalogItemsQuery query = new () { PageNumber = -1, PageSize = 2 };
+        GetCatalogItemsQueryHandler handler = new (_mockUnitOfWork.Object, _mapper);
 
-        //FIND OUT WHY IT'S NOT WORKING
-        // _mockUnitOfWork.Setup(uow => uow.CatalogItems.GetAllAsync())
-        //     .Returns(catalogItems);
-        
-        var handler = new GetCatalogItemsQueryHandler(_mockUnitOfWork.Object, _mockMapper.Object);
-        
-        //Act
-        var result = await handler.Handle(query, default);
-        
-        //Assert
-        _mockUnitOfWork.Verify(uow => uow.CatalogItems.GetAllAsync(), Times.Once);
-        
-        
+        ArgumentOutOfRangeException exception = await Should.ThrowAsync<ArgumentOutOfRangeException>
+        (
+            async () =>
+            {
+                await handler.Handle(query, default);
+            }
+        );
+        exception.ShouldNotBeNull();
     }
     
+    [Fact]
+    public async Task Handle_GetCatalogItems_ReturnsListOfItems()
+    {
+        GetCatalogItemsQuery query = new () { PageNumber = Constants.PageNumber, PageSize = Constants.PageSize };
+        
+        GetCatalogItemsQueryHandler handler = new (_mockUnitOfWork.Object, _mapper);
+
+        PagedList<CatalogItemDto> result = await handler.Handle(query, default);
+
+        result.ShouldBeOfType<PagedList<CatalogItemDto>>();
+        result.Items.Count.ShouldBe(Constants.TotalRecords);
+        result.CurrentPage.ShouldBe(query.PageNumber);
+    }
 }

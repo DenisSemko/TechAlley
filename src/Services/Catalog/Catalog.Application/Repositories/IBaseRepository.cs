@@ -12,7 +12,7 @@ public interface IBaseRepository<T> where T : BaseEntity
     Task InsertOneAsync(T entity);
     Task InsertManyAsync(List<T> entities);
     Task UpdateAsync(T entity);
-    Task DeleteAsync(Expression<Func<T, bool>> predicate);
+    Task<T> DeleteAsync(Expression<Func<T, bool>> predicate);
     
     #endregion
 }

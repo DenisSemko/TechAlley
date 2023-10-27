@@ -1,87 +1,69 @@
-using Catalog.Domain.Entities;
-using Catalog.UnitTests.Common;
-
 namespace Catalog.UnitTests.Application.Commands;
 
 public class AddCatalogItemCommandHandlerTests
 {
     private readonly Mock<IUnitOfWork> _mockUnitOfWork;
-    private readonly Mock<ICatalogItemRepository> _mockCatalogItemRepository;
-    private readonly Mock<ILogger<AddCatalogItemCommandHandler>> _mockLogger;
+    private readonly IMapper _mapper;
 
     public AddCatalogItemCommandHandlerTests()
     {
-        _mockUnitOfWork = new Mock<IUnitOfWork>();
-        _mockCatalogItemRepository = new Mock<ICatalogItemRepository>();
-        _mockLogger = new Mock<ILogger<AddCatalogItemCommandHandler>>();
-        _mockUnitOfWork.Setup(uow => uow.CatalogItems).Returns(_mockCatalogItemRepository.Object);
+        ICatalogItemTestConfiguration testConfiguration = new CatalogItemTestConfiguration();
+        _mockUnitOfWork = testConfiguration.MockUnitOfWork();
+        _mapper = testConfiguration.DefineMapper();
     }
 
     [Fact]
-    public async Task Handle_InvalidCatalogItem_ReturnsValidationRules()
+    public async Task Handle_AddInvalidCatalogItem_ReturnsValidationRules()
     {
-        //Arrange
-        var command = new AddCatalogItemCommand()
+        CatalogItemDto invalidDataItem = FakeData.InvalidCatalogItemDto;
+        AddCatalogItemCommand command = new ()
         {
-            Name = FakeData.ConfigureInvalidData().Name,
-            Description = FakeData.ConfigureInvalidData().Description,
-            CatalogBrand = FakeData.ConfigureInvalidData().CatalogBrand,
-            CatalogType = FakeData.ConfigureInvalidData().CatalogType,
-            Price = FakeData.ConfigureInvalidData().Price,
-            Quantity = FakeData.ConfigureInvalidData().Quantity
+            Name = invalidDataItem.Name,
+            Description = invalidDataItem.Description,
+            CatalogBrand = invalidDataItem.CatalogBrand,
+            CatalogType = invalidDataItem.CatalogType,
+            ImageFileName = invalidDataItem.ImageFileName,
+            Price = invalidDataItem.Price,
+            Quantity = invalidDataItem.Quantity
         };
-        var validator = new AddCatalogItemCommandValidator(_mockUnitOfWork.Object);
         
-        //Act
-        var result = await validator.ValidateAsync(command);
-
-        //Assert
-        Assert.False(result.IsValid);
-        Assert.Contains(result.Errors, e => e.PropertyName == "CatalogType" && e.ErrorMessage.Contains("required"));
-        Assert.Contains(result.Errors, e => e.PropertyName == "CatalogBrand" && e.ErrorMessage.Contains("required"));
-        Assert.Contains(result.Errors, e => e.PropertyName == "Price" && e.ErrorMessage.Contains("zero"));
-        Assert.Contains(result.Errors, e => e.PropertyName == "Quantity" && e.ErrorMessage.Contains("zero"));
+        AddCatalogItemCommandValidator validator = new (_mockUnitOfWork.Object);
+        
+        ValidationResult result = await validator.ValidateAsync(command);
+    
+        result.IsValid.ShouldBeFalse();
+        result.Errors.ShouldContain(e => e.PropertyName == "CatalogType" && e.ErrorMessage.Contains("required"));
+        result.Errors.ShouldContain(e => e.PropertyName == "CatalogBrand" && e.ErrorMessage.Contains("required"));
+        result.Errors.ShouldContain(e => e.PropertyName == "Price" && e.ErrorMessage.Contains("zero"));
+        result.Errors.ShouldContain(e => e.PropertyName == "Quantity" && e.ErrorMessage.Contains("zero"));
     }
     
-    // [Fact]
-    // public async Task Handle_AddCatalogItem_ReturnsNewItem()
-    // {
-    //     //Arrange
-    //     var catalogType = new CatalogType(Guid.NewGuid(), "Test Type");
-    //     var catalogBrand = new CatalogBrand(Guid.NewGuid(), "Test Brand");
-    //     var command = new AddCatalogItemCommand()
-    //     {
-    //         Name = FakeData.ConfigureData().Name,
-    //         Description = FakeData.ConfigureData().Description,
-    //         CatalogBrand = FakeData.ConfigureData().CatalogBrand,
-    //         CatalogType = FakeData.ConfigureData().CatalogType,
-    //         ImageUri = FakeData.ConfigureData().ImageUri,
-    //         Price = FakeData.ConfigureData().Price,
-    //         Quantity = FakeData.ConfigureData().Quantity
-    //     };
-    //     var catalogItem = new CatalogItem(Guid.NewGuid(), command.Name, command.Description, command.ImageUri, command.ImageUri, catalogType, catalogBrand, command.Price, command.Quantity);
-    //     
-    //     _mockUnitOfWork.Setup(uow => uow.CatalogTypes.GetTypeByName(command.CatalogType))
-    //         .ReturnsAsync(catalogType);
-    //     _mockUnitOfWork.Setup(uow => uow.CatalogBrands.GetBrandByName(command.CatalogBrand))
-    //         .ReturnsAsync(catalogBrand);
-    //     _mockUnitOfWork.Setup(uow => uow.CatalogItems.InsertOneAsync(It.IsAny<CatalogItem>()))
-    //         .Returns(Task.CompletedTask);
-    //     
-    //     var handler = new AddCatalogItemCommandHandler(_mockUnitOfWork.Object, _mockLogger.Object);
-    //     
-    //     //Act
-    //     var result = await handler.Handle(command, default);
-    //
-    //     //Assert
-    //     _mockUnitOfWork.Verify(uow => uow.CatalogTypes.GetTypeByName(command.CatalogType), Times.Once);
-    //     _mockUnitOfWork.Verify(uow => uow.CatalogBrands.GetBrandByName(command.CatalogBrand), Times.Once);
-    //     Assert.Equal(catalogItem.Name, result.Name);
-    //     Assert.Equal(catalogItem.Description, result.Description);
-    //     Assert.Equal(catalogItem.Price, result.Price);
-    //     Assert.Equal(catalogItem.ImageUri, result.ImageUri);
-    //     Assert.Equal(catalogItem.CatalogType.Type, result.CatalogType.Type);
-    //     Assert.Equal(catalogItem.CatalogBrand.Brand, result.CatalogBrand.Brand);
-    //     Assert.Equal(catalogItem.Quantity, result.Quantity);
-    // }
+    [Fact]
+    public async Task Handle_AddCatalogItem_ReturnsNewItem()
+    {
+        CatalogItem newItem = FakeData.SingleFakeCatalogItem;
+        AddCatalogItemCommand command = new ()
+        {
+            Name = newItem.Name,
+            Description = newItem.Description,
+            CatalogBrand = newItem.CatalogBrand.Brand,
+            CatalogType = newItem.CatalogType.Type,
+            ImageFileName = newItem.ImageFileName,
+            Price = newItem.Price,
+            Quantity = newItem.Quantity
+        };
+
+        _mockUnitOfWork.Setup(uow => uow.CatalogTypes.GetTypeByName(command.CatalogType))
+            .ReturnsAsync(newItem.CatalogType);
+        _mockUnitOfWork.Setup(uow => uow.CatalogBrands.GetBrandByName(command.CatalogBrand))
+            .ReturnsAsync(newItem.CatalogBrand);
+        
+        AddCatalogItemCommandHandler handler = new (_mockUnitOfWork.Object, _mapper);
+        
+        CatalogItemDto result = await handler.Handle(command, default);
+    
+        _mockUnitOfWork.Verify(uow => uow.CatalogTypes.GetTypeByName(command.CatalogType), Times.Once);
+        _mockUnitOfWork.Verify(uow => uow.CatalogBrands.GetBrandByName(command.CatalogBrand), Times.Once);
+        result.Name.ShouldBeEquivalentTo(newItem.Name);
+    }
 }
