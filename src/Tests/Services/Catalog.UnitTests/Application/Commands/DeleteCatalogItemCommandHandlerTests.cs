@@ -37,6 +37,6 @@ public class DeleteCatalogItemCommandHandlerTests
         
         await handler.Handle(command, default);
         
-        // items.Count.ShouldBe(1);
+        items.Count.ShouldBe(1);
     }
 }
