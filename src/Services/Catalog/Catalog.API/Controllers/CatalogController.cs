@@ -28,15 +28,15 @@ public class CatalogController : ControllerBase
     /// Gets Catalog Items.
     /// </summary>
     /// <returns>
-    /// Returns a List of Catalog Items.
+    /// Returns a PagedList of Catalog Items.
     /// </returns>
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<CatalogItemDto>), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<IEnumerable<CatalogItemDto>>> Get([FromQuery] GetCatalogItemsParams catalogItemsParams)
+    [ProducesResponseType(typeof(PagedList<CatalogItemDto>), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<PagedList<CatalogItemDto>>> Get([FromQuery] GetCatalogItemsParams catalogItemsParams)
     {
         GetCatalogItemsQuery query = new GetCatalogItemsQuery() { PageNumber = catalogItemsParams.PageNumber, PageSize = catalogItemsParams.PageSize };
         
-        List<CatalogItemDto> catalogItems = await _mediator.Send(query);
+        PagedList<CatalogItemDto> catalogItems = await _mediator.Send(query);
 
         return Ok(catalogItems);
     }

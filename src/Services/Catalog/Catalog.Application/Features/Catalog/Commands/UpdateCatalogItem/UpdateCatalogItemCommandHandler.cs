@@ -3,12 +3,10 @@ namespace Catalog.Application.Features.Catalog.Commands.UpdateCatalogItem;
 public class UpdateCatalogItemCommandHandler : IRequestHandler<UpdateCatalogItemCommand, Unit>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly ILogger<UpdateCatalogItemCommandHandler> _logger;
 
-    public UpdateCatalogItemCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateCatalogItemCommandHandler> logger)
+    public UpdateCatalogItemCommandHandler(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     public async Task<Unit> Handle(UpdateCatalogItemCommand request, CancellationToken cancellationToken)
@@ -25,8 +23,6 @@ public class UpdateCatalogItemCommandHandler : IRequestHandler<UpdateCatalogItem
 
         await _unitOfWork.CatalogItems.UpdateAsync(updatedItem);
         
-        _logger.LogInformation(Constants.Logs.CatalogItemUpdated, catalogItem.Name);
-
         return Unit.Value;
     }
 }

@@ -31,7 +31,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
             .Limit(pageSize)
             .ToListAsync();
 
-        return new PagedList<T>(items, Convert.ToInt32(totalCount), pageNumber, pageSize);
+        return new PagedList<T>(pageNumber, pageSize, Convert.ToInt32(totalCount), items);
     }
 
     public async Task<T> GetAsync(Expression<Func<T, bool>> predicate) =>
@@ -61,6 +61,6 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
         await _collection.FindOneAndReplaceAsync(filter, entity);
     }
 
-    public async Task DeleteAsync(Expression<Func<T, bool>> predicate) =>
+    public async Task<T> DeleteAsync(Expression<Func<T, bool>> predicate) =>
         await _collection.FindOneAndDeleteAsync(predicate);
 }

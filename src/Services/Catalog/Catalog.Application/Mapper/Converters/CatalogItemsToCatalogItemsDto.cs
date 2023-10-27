@@ -5,7 +5,7 @@ public class CatalogItemsToCatalogItemsDto : ITypeConverter<PagedList<CatalogIte
     public PagedList<CatalogItemDto> Convert(PagedList<CatalogItem> source, PagedList<CatalogItemDto> destination, ResolutionContext context)
     {
         List<CatalogItemDto> catalogItemDtos = new();
-        catalogItemDtos.AddRange(source.Select(catalogItem => new CatalogItemDto()
+        catalogItemDtos.AddRange(source.Items.Select(catalogItem => new CatalogItemDto()
         {
             Id = catalogItem.Id,
             Name = catalogItem.Name,
@@ -16,6 +16,6 @@ public class CatalogItemsToCatalogItemsDto : ITypeConverter<PagedList<CatalogIte
             ImageFileName = catalogItem.ImageFileName,
             Quantity = catalogItem.Quantity
         }).ToList());
-        return new PagedList<CatalogItemDto>(catalogItemDtos, source.CurrentPage, source.PageSize, source.TotalRecords);
+        return new PagedList<CatalogItemDto>(source.CurrentPage, source.PageSize, source.TotalRecords, catalogItemDtos);
     }
 }

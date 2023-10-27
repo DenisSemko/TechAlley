@@ -13,6 +13,11 @@ public class GetCatalogItemsQueryHandler : IRequestHandler<GetCatalogItemsQuery,
 
     public async Task<PagedList<CatalogItemDto>> Handle(GetCatalogItemsQuery request, CancellationToken cancellationToken)
     {
+        if (request is { PageNumber: < 1, PageSize: < 5 })
+        {
+            throw new ArgumentOutOfRangeException(nameof(request));
+        }
+        
         PagedList<CatalogItem> catalogItems = await _unitOfWork.CatalogItems.GetPagedAsync(request.PageNumber, request.PageSize);
         return _mapper.Map<PagedList<CatalogItemDto>>(catalogItems);
     }
