@@ -56,7 +56,7 @@ const PickOnProduct = () => {
                   filteredData && filteredData.length > 0 ? (
                     <>
                       <div className='pick-product'>
-                        <img src={imageData[currentProduct]}></img>
+                        <img src={imageData[currentProduct]} alt=""></img>
                         <p className='pick-product-name'>{filteredData[currentProduct].catalogBrand} {filteredData[currentProduct].name}</p>
                         <p className='pick-product-description'>{filteredData[currentProduct].description}</p>
                         <div className="pick-product-cart">

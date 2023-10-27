@@ -11,7 +11,7 @@ const Reviews = () => {
             <div className="review">
                 <blockquote className="review-block">
                     <div className="avatar"> 
-                        <img src="/img/avatar-1.jpg"></img>
+                        <img src="/img/avatar-1.jpg" alt=""></img>
                     </div>
                     <div className="ratings-container">
                         <div className="ratings">
@@ -27,7 +27,7 @@ const Reviews = () => {
             <div className="review">
                 <blockquote className="review-block">
                     <div className="avatar"> 
-                        <img src="https://i.guim.co.uk/img/media/37fae91abf78e15044877072484d9fe60824f6b4/0_1092_5504_3302/master/5504.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=c4dc6a95fc4c0dd3f4e9b895e9b25e78" />
+                        <img src="https://i.guim.co.uk/img/media/37fae91abf78e15044877072484d9fe60824f6b4/0_1092_5504_3302/master/5504.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=c4dc6a95fc4c0dd3f4e9b895e9b25e78" alt="" />
                     </div>
                     <div className="ratings-container">
                         <div className="ratings">
@@ -43,7 +43,7 @@ const Reviews = () => {
             <div className="review">
                 <blockquote className="review-block">
                     <div className="avatar"> 
-                        <img src="https://static2.gensler.com/uploads/image/80417/people-travis-albrecht-02-GRIDBLOCK_508x508_1674843350.jpg"></img>
+                        <img src="https://static2.gensler.com/uploads/image/80417/people-travis-albrecht-02-GRIDBLOCK_508x508_1674843350.jpg" alt=""></img>
                     </div>
                     <div className="ratings-container">
                         <div className="ratings">

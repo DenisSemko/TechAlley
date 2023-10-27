@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -27,6 +26,7 @@ const useFetch = (requestParams) => {
 
     useEffect(() => {
         fetchData(requestParams);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [requestParams.url]);
 
     return { data, isLoading, error };

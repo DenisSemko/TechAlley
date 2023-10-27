@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import "./Slider.scss"
 
 const Slider = () => {

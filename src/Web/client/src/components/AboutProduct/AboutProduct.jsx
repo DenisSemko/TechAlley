@@ -84,7 +84,7 @@ const AboutProduct = () => {
         </div>
         <div className="charging-details">
             <div className='charging-wrapper'>
-                <img src="https://t3.ftcdn.net/jpg/02/65/57/54/360_F_265575417_kbv0RvOy9T0DnRt0SgwmjN8BltVuAaSl.jpg"></img>
+                <img src="https://t3.ftcdn.net/jpg/02/65/57/54/360_F_265575417_kbv0RvOy9T0DnRt0SgwmjN8BltVuAaSl.jpg" alt=""></img>
             </div>
             <div className="charging-content">
                 <h3 className="charging-content-subtitle">Listen all day</h3>
