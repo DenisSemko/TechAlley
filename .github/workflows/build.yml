@@ -36,10 +36,10 @@ jobs:
         dotnet-version: 6.0.x
         
     - name: Restore dependencies
-      run: dotnet restore TechAlley.sln
+      run: dotnet restore src/TechAlley.sln
       
     - name: Build
-      run: dotnet build TechAlley.sln --no-restore
+      run: dotnet build src/TechAlley.sln --no-restore
       
     - name: Test
-      run: dotnet test TechAlley.sln --no-build --verbosity normal
+      run: dotnet test src/TechAlley.sln --no-build --verbosity normal
