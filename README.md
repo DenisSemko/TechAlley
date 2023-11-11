@@ -31,7 +31,7 @@ At the heart of the project lies a powerful stack comprising .NET, React, and Mi
 - API Gateway - Ocelot API
 - Identity - ASP.NET Identity, PostgreSQL database
 - Microservices Communication - RabbitMQ via MassTransit
-- Filese Hub - AWS S3 Bucket
+- Files Hub - AWS S3 Bucket
 - DDD principles, CQRS
 - Unit Testing
 
