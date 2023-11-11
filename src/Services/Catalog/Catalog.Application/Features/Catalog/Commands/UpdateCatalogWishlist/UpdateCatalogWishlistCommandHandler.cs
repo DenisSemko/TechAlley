@@ -3,13 +3,11 @@ namespace Catalog.Application.Features.Catalog.Commands.UpdateCatalogWishlist;
 public class UpdateCatalogWishlistCommandHandler : IRequestHandler<UpdateCatalogWishlistCommand, Unit>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly ILogger<UpdateCatalogWishlistCommandHandler> _logger;
     private readonly IMapper _mapper;
 
-    public UpdateCatalogWishlistCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateCatalogWishlistCommandHandler> logger, IMapper mapper)
+    public UpdateCatalogWishlistCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
@@ -36,8 +34,6 @@ public class UpdateCatalogWishlistCommandHandler : IRequestHandler<UpdateCatalog
 
         await _unitOfWork.CatalogWishlists.UpdateAsync(updatedItem);
         
-        _logger.LogInformation(Constants.Logs.CatalogWishlistUpdated, updatedItem.Id);
-
         return Unit.Value;
     }
 }

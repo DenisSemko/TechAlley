@@ -10,21 +10,20 @@ public class UserController : ControllerBase
     #region PrivateFields
 
     private readonly IMediator _mediator;
-    private readonly ILogger<UserController> _logger;
 
     #endregion
 
     #region ctor
 
-    public UserController(IMediator mediator, ILogger<UserController> logger)
+    public UserController(IMediator mediator)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     #endregion
 
     #region ControllerMethods
+    
     /// <summary>
     /// Gets User by ID.
     /// </summary>
@@ -40,7 +39,6 @@ public class UserController : ControllerBase
     {
         GetUserByIdQuery query = new () { Id = id };
         
-        _logger.Log(LogLevel.Information, "Executing User GetById");
         ApplicationUserDto catalogItem = await _mediator.Send(query);
 
         return Ok(catalogItem);
@@ -61,7 +59,6 @@ public class UserController : ControllerBase
     [ProducesDefaultResponseType]
     public async Task<ActionResult> Update([FromBody] UpdateUserCommand command)
     {
-        _logger.Log(LogLevel.Information, "Executing User Put");
         await _mediator.Send(command);
         return NoContent();
     }
@@ -83,10 +80,9 @@ public class UserController : ControllerBase
     {
         DeleteUserCommand command = new () { Id = id };
         
-        _logger.Log(LogLevel.Information, "Executing User Delete");
-        
         await _mediator.Send(command);
         return NoContent();
     }
+    
     #endregion
 }

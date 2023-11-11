@@ -3,13 +3,11 @@ namespace Catalog.Application.Features.Catalog.Commands.AddCatalogWishlist;
 public class AddCatalogWishlistCommandHandler : IRequestHandler<AddCatalogWishlistCommand, CatalogWishlistDto>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly ILogger<AddCatalogWishlistCommandHandler> _logger;
     private readonly IMapper _mapper;
 
-    public AddCatalogWishlistCommandHandler(IUnitOfWork unitOfWork, ILogger<AddCatalogWishlistCommandHandler> logger, IMapper mapper)
+    public AddCatalogWishlistCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
@@ -27,8 +25,6 @@ public class AddCatalogWishlistCommandHandler : IRequestHandler<AddCatalogWishli
         
         await _unitOfWork.CatalogWishlists.InsertOneAsync(new CatalogWishlist(catalogWishlistDto.Id, catalogItems, catalogWishlistDto.BuyerId));
         
-        _logger.LogInformation(string.Format(Constants.Logs.CatalogWishlistCreated, catalogWishlistDto.Id));
-
         return catalogWishlistDto;
     }
 }

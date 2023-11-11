@@ -10,16 +10,14 @@ public class OrderController : ControllerBase
     #region PrivateFields
 
     private readonly IMediator _mediator;
-    private readonly ILogger<OrderController> _logger;
 
     #endregion
 
     #region ctor
 
-    public OrderController(IMediator mediator, ILogger<OrderController> logger)
+    public OrderController(IMediator mediator)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     #endregion
@@ -41,7 +39,6 @@ public class OrderController : ControllerBase
     {
         GetOrdersByBuyerIdQuery query = new GetOrdersByBuyerIdQuery() { BuyerId = buyerId };
         
-        _logger.Log(LogLevel.Information, "Executing Order Get By Id");
         List<OrderDto> catalogItems = await _mediator.Send(query);
 
         return Ok(catalogItems);
@@ -60,8 +57,7 @@ public class OrderController : ControllerBase
     [ProducesResponseType((int)HttpStatusCode.Created)]
     public async Task<ActionResult<OrderDto>> Post([FromBody] AddOrderCommand command)
     {
-        _logger.Log(LogLevel.Information, "Executing Order Post");
-        var result = await _mediator.Send(command);
+        OrderDto result = await _mediator.Send(command);
         
         return CreatedAtAction(nameof(Post), result);
     }
@@ -81,7 +77,6 @@ public class OrderController : ControllerBase
     [ProducesDefaultResponseType]
     public async Task<ActionResult> UpdateOrder([FromBody] UpdateOrderCommand command)
     {
-        _logger.Log(LogLevel.Information, "Executing Order Put");
         await _mediator.Send(command);
         return NoContent();
     }
@@ -102,8 +97,6 @@ public class OrderController : ControllerBase
     public async Task<ActionResult> Delete(Guid id)
     {
         DeleteOrderCommand command = new DeleteOrderCommand() { Id = id };
-        
-        _logger.Log(LogLevel.Information, "Executing Order Delete");
         
         await _mediator.Send(command);
         return NoContent();

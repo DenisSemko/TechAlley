@@ -3,12 +3,10 @@ namespace Catalog.Application.Features.Catalog.Commands.DeleteCatalogItemFromCat
 public class DeleteCatalogItemFromWishlistCommandHandler : IRequestHandler<DeleteCatalogItemFromWishlistCommand>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly ILogger<DeleteCatalogItemFromWishlistCommandHandler> _logger;
 
-    public DeleteCatalogItemFromWishlistCommandHandler(IUnitOfWork unitOfWork, ILogger<DeleteCatalogItemFromWishlistCommandHandler> logger)
+    public DeleteCatalogItemFromWishlistCommandHandler(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     public async Task Handle(DeleteCatalogItemFromWishlistCommand request, CancellationToken cancellationToken)
@@ -25,13 +23,11 @@ public class DeleteCatalogItemFromWishlistCommandHandler : IRequestHandler<Delet
         if (isUpdatedCatalogWishlist)
         {
             await _unitOfWork.CatalogWishlists.UpdateAsync(catalogWishlist);
-            _logger.LogInformation(Constants.Logs.CatalogWishlistUpdated, catalogWishlist.Id);
         }
 
         if (catalogWishlist.CatalogItems.Count == 0)
         {
             await _unitOfWork.CatalogWishlists.DeleteAsync(wishlist => wishlist.Id == catalogWishlist.Id);
-            _logger.LogInformation(Constants.Logs.CatalogWishlistDeleted, catalogWishlist.Id);
         }
     }
 }

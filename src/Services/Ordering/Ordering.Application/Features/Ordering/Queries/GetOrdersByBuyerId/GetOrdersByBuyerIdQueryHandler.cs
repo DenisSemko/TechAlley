@@ -13,7 +13,7 @@ public class GetOrdersByBuyerIdQueryHandler : IRequestHandler<GetOrdersByBuyerId
 
     public async Task<List<OrderDto>> Handle(GetOrdersByBuyerIdQuery request, CancellationToken cancellationToken)
     {
-        var catalogItems = await _unitOfWork.Orders.GetAllAsync(o => o.BuyerId == request.BuyerId);
-        return _mapper.Map<List<OrderDto>>(catalogItems);
+        IReadOnlyList<Order> orders = await _unitOfWork.Orders.GetAllAsync(o => o.BuyerId == request.BuyerId);
+        return _mapper.Map<List<OrderDto>>(orders);
     }
 }

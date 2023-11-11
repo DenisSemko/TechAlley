@@ -8,20 +8,22 @@ namespace Catalog.API.Controllers;
 public class CatalogWishlistController : ControllerBase
 {
     #region PrivateFields
-
+    
     private readonly IMediator _mediator;
-
+    
     #endregion
     
     #region ctor
-
+    
     public CatalogWishlistController(IMediator mediator, ILogger<CatalogWishlistController> logger)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
-
-    #endregion
     
+    #endregion
+
+    #region Controller Methods
+
     /// <summary>
     /// Gets Catalog Wishlist by Buyer ID.
     /// </summary>
@@ -125,4 +127,6 @@ public class CatalogWishlistController : ControllerBase
         await _mediator.Send(command);
         return NoContent();
     }
+    
+    #endregion
 }

@@ -12,16 +12,14 @@ public class AuthController : ControllerBase
    private readonly IAuthService _authService;
    private readonly UserManager<ApplicationUser> _userManager;
    private readonly IAuthenticationResultService _authenticationResultService;
-   private readonly ILogger<AuthController> _logger;
    
    #endregion
    
    #region ctor
    
-   public AuthController(IAuthService authService, ILogger<AuthController> logger, UserManager<ApplicationUser> userManager, IAuthenticationResultService authenticationResultService)
+   public AuthController(IAuthService authService, UserManager<ApplicationUser> userManager, IAuthenticationResultService authenticationResultService)
    {
       _authService = authService ?? throw new ArgumentNullException(nameof(authService));
-      _logger = logger ?? throw new ArgumentNullException(nameof(logger));
       _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
       _authenticationResultService = authenticationResultService ?? throw new ArgumentNullException(nameof(authenticationResultService));
    }
@@ -44,8 +42,6 @@ public class AuthController : ControllerBase
    [ProducesResponseType(typeof(RegisterModel), (int)HttpStatusCode.Created)]
    public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
    {
-      _logger.Log(LogLevel.Information, "Executing Identity Register");
-      
       AuthenticationResult authResponse = await _authService.RegisterAsync(registerModel);
       if (!authResponse.Success)
       {
@@ -77,8 +73,6 @@ public class AuthController : ControllerBase
    [ProducesResponseType(typeof(LoginModel), (int)HttpStatusCode.OK)]
    public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
    {
-      _logger.Log(LogLevel.Information, "Executing Identity Login");
-      
       AuthenticationResult authResponse = await _authService.LoginAsync(loginModel);
       if (!authResponse.Success)
       {
@@ -119,8 +113,6 @@ public class AuthController : ControllerBase
    [ProducesResponseType(typeof(AuthSuccessResponse), (int)HttpStatusCode.OK)]
    public async Task<ActionResult<AuthSuccessResponse>> RefreshTokens(string accessToken)
    {
-      _logger.Log(LogLevel.Information, "Executing Identity Refresh Tokens");
-      
       JwtSecurityTokenHandler tokenHandler = new ();
       JwtSecurityToken accessTokenInfo = tokenHandler.ReadJwtToken(accessToken);
       Claim? userNameClaim = accessTokenInfo.Claims.FirstOrDefault(claim => claim.Type == "name");

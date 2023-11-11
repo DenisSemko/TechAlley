@@ -17,7 +17,7 @@ public class GetCatalogItemByIdQueryHandler : IRequestHandler<GetCatalogItemById
         
         if (catalogItem is null)
         {
-            throw new KeyNotFoundException();
+            throw new KeyNotFoundException(string.Format(Constants.Exceptions.ItemNotFound, nameof(CatalogItem)));
         }
         
         return _mapper.Map<CatalogItemDto>(catalogItem);

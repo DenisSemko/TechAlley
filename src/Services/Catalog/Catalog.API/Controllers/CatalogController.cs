@@ -8,22 +8,22 @@ namespace Catalog.API.Controllers;
 public class CatalogController : ControllerBase
 {
     #region PrivateFields
-
+    
     private readonly IMediator _mediator;
-
+    
     #endregion
 
     #region ctor
-
+    
     public CatalogController(IMediator mediator, ILogger<CatalogController> logger)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
-
+    
     #endregion
 
     #region ControllerMethods
-
+    
     /// <summary>
     /// Gets Catalog Items.
     /// </summary>

@@ -13,7 +13,13 @@ public class GetBasketByBuyerIdQueryHandler : IRequestHandler<GetBasketByBuyerId
 
     public async Task<BasketDto> Handle(GetBasketByBuyerIdQuery request, CancellationToken cancellationToken)
     {
-        var basket = await _unitOfWork.Baskets.GetByIdAsync(request.BuyerId);
+        Domain.Entities.Basket basket = await _unitOfWork.Baskets.GetByIdAsync(request.BuyerId);
+        
+        if (basket is null)
+        {
+            throw new KeyNotFoundException(string.Format(Constants.Exceptions.ItemNotFound, nameof(Basket)));
+        }
+        
         return _mapper.Map<BasketDto>(basket);
     }
 }

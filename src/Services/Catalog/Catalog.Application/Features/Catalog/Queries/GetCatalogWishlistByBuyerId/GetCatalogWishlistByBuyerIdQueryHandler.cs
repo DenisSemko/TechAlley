@@ -14,6 +14,12 @@ public class GetCatalogWishlistByBuyerIdQueryHandler : IRequestHandler<GetCatalo
     public async Task<CatalogWishlistDto> Handle(GetCatalogWishlistByBuyerIdQuery request, CancellationToken cancellationToken)
     {
         CatalogWishlist catalogWishlist = await _unitOfWork.CatalogWishlists.GetAsync(wishlist => wishlist.BuyerId == request.BuyerId);
+        
+        if (catalogWishlist is null)
+        {
+            throw new KeyNotFoundException(string.Format(Constants.Exceptions.ItemNotFound, nameof(catalogWishlist)));
+        }
+        
         return _mapper.Map<CatalogWishlistDto>(catalogWishlist);
     }
 }

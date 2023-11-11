@@ -8,24 +8,22 @@ namespace Basket.API.Controllers;
 public class BasketController : Controller
 {
     #region PrivateFields
-
+    
     private readonly IMediator _mediator;
-    private readonly ILogger<BasketController> _logger;
-
+    
     #endregion
     
     #region ctor
-
-    public BasketController(IMediator mediator, ILogger<BasketController> logger)
+    
+    public BasketController(IMediator mediator)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
-
+    
     #endregion
     
     #region ControllerMethods
-
+    
     /// <summary>
     /// Gets Basket.
     /// </summary>
@@ -41,8 +39,7 @@ public class BasketController : Controller
     {
         GetBasketByBuyerIdQuery query = new GetBasketByBuyerIdQuery() { BuyerId = id };
         
-        _logger.Log(LogLevel.Information, "Executing Basket Get By Buyer Id");
-        var basket = await _mediator.Send(query);
+        BasketDto basket = await _mediator.Send(query);
 
         return Ok(basket ?? new BasketDto() { Id = Guid.NewGuid(), BuyerId = id, Items = new()});
     }
@@ -60,8 +57,7 @@ public class BasketController : Controller
     [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult<Domain.Entities.Basket>> Post([FromBody] UpdateBasketItemsCommand command)
     {
-        _logger.Log(LogLevel.Information, "Executing Basket Post");
-        var result = await _mediator.Send(command);
+        Domain.Entities.Basket result = await _mediator.Send(command);
         
         return Ok(result);
     }
@@ -80,8 +76,7 @@ public class BasketController : Controller
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     public async Task<ActionResult> Checkout([FromBody] CheckoutBasketCommand command)
     {
-        _logger.Log(LogLevel.Information, "Executing Basket Checkout");
-        var result = await _mediator.Send(command);
+        Unit result = await _mediator.Send(command);
         
         return Accepted();
     }
@@ -101,11 +96,9 @@ public class BasketController : Controller
     [ProducesDefaultResponseType]
     public async Task<ActionResult> Delete(Guid id)
     {
-        var command = new DeleteBasketCommand() { BuyerId = id };
-        
-        _logger.Log(LogLevel.Information, "Executing Basket Delete");
-        
+        DeleteBasketCommand command = new () { BuyerId = id };
         await _mediator.Send(command);
+        
         return NoContent();
     }
     
