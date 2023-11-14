@@ -33,7 +33,7 @@ At the heart of the project lies a powerful stack comprising .NET, React, and Mi
 - Microservices Communication - RabbitMQ via MassTransit
 - Files Hub - AWS S3 Bucket
 - DDD principles, CQRS
-- Unit Testing
+- Unit Testing: xUnit, Shouldly
 
 ## Architecture
 
