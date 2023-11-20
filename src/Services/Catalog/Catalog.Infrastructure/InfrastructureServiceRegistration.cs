@@ -9,10 +9,8 @@ public static class InfrastructureServiceRegistration
             serviceProvider.GetRequiredService<IOptions<DbSettings.DbSettings>>().Value);
 
         services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-        services.AddScoped<ICatalogItemRepository, CatalogItemRepository>();
         services.AddScoped<ICatalogBrandRepository, CatalogBrandRepository>();
         services.AddScoped<ICatalogTypeRepository, CatalogTypeRepository>();
-        services.AddScoped<ICatalogWishlistRepository, CatalogWishlistRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

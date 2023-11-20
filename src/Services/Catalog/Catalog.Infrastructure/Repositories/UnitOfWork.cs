@@ -15,8 +15,8 @@ public class UnitOfWork : IUnitOfWork
 
     #region Repositories
     
-    private ICatalogItemRepository catalogItemRepository;
-    public ICatalogItemRepository CatalogItems => catalogItemRepository ?? new CatalogItemRepository(_mongoSettings);
+    private IBaseRepository<CatalogItem> catalogItemRepository;
+    public IBaseRepository<CatalogItem> CatalogItems => catalogItemRepository ?? new BaseRepository<CatalogItem>(_mongoSettings);
     
     private ICatalogTypeRepository catalogTypeRepository;
     public ICatalogTypeRepository CatalogTypes => catalogTypeRepository ?? new CatalogTypeRepository(_mongoSettings);
@@ -24,8 +24,8 @@ public class UnitOfWork : IUnitOfWork
     private ICatalogBrandRepository catalogBrandRepository;
     public ICatalogBrandRepository CatalogBrands => catalogBrandRepository ?? new CatalogBrandRepository(_mongoSettings);
     
-    private ICatalogWishlistRepository catalogWishlistRepository;
-    public ICatalogWishlistRepository CatalogWishlists => catalogWishlistRepository ?? new CatalogWishlistRepository(_mongoSettings);
+    private IBaseRepository<CatalogWishlist> catalogWishlistRepository;
+    public IBaseRepository<CatalogWishlist> CatalogWishlists => catalogWishlistRepository ?? new BaseRepository<CatalogWishlist>(_mongoSettings);
     
     #endregion
 }

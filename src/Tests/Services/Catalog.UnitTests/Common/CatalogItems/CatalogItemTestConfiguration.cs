@@ -10,9 +10,9 @@ public class CatalogItemTestConfiguration : BaseTestConfiguration, ICatalogItemT
         return mockUnitOfWork;
     }
 
-    public Mock<ICatalogItemRepository> MockCatalogItemRepository()
+    public Mock<IBaseRepository<CatalogItem>> MockCatalogItemRepository()
     {
-        Mock<ICatalogItemRepository> mockCatalogItemRepository = new ();
+        Mock<IBaseRepository<CatalogItem>> mockCatalogItemRepository = new ();
         List<CatalogItem> items = FakeData.FakeCatalogItems;
         
         PagedList<CatalogItem> dummyItems = new (Constants.PageNumber, Constants.PageSize, Constants.TotalRecords, items);
