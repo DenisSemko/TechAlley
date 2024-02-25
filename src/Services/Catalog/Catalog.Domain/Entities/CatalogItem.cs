@@ -1,7 +1,7 @@
 namespace Catalog.Domain.Entities;
 
 [BsonCollection("CatalogItem")]
-public sealed class CatalogItem : BaseEntity
+public sealed class CatalogItem : AggregateRoot
 {
     public string Name { get; private set; }
 	
@@ -21,7 +21,7 @@ public sealed class CatalogItem : BaseEntity
 
     public int Quantity { get; private set; }
 
-    public CatalogItem(Guid id, string name, string description, string imageFileName, CatalogType catalogType, CatalogBrand catalogBrand, decimal price, int quantity) : base(id)
+    private CatalogItem(Guid id, string name, string description, string imageFileName, CatalogType catalogType, CatalogBrand catalogBrand, decimal price, int quantity) : base(id)
     {
 	    Name = name;
 	    Description = description;
@@ -32,6 +32,16 @@ public sealed class CatalogItem : BaseEntity
 	    CatalogTypeId = catalogType.Id;
 	    CatalogBrandId = catalogBrand.Id;
 	    Quantity = quantity;
+    }
+
+    public static CatalogItem Create(Guid id, string name, string description, string imageFileName, CatalogType catalogType, CatalogBrand catalogBrand, decimal price, int quantity)
+    {
+	    CatalogItem catalogItem = new(id, name, description, imageFileName, catalogType, catalogBrand,
+		    price, quantity);
+	    
+	    catalogItem.RaiseDomainEvent(new CatalogItemCreatedEvent(catalogItem.Id));
+
+	    return catalogItem;
     }
     
     public override bool Equals(object obj)

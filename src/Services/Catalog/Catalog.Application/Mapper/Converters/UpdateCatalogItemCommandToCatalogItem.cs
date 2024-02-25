@@ -4,14 +4,15 @@ public static class UpdateCatalogItemCommandToCatalogItem
 {
     public static CatalogItem Convert(UpdateCatalogItemCommand source, CatalogType catalogType, CatalogBrand catalogBrand)
     {
-        return new CatalogItem(
-            source.Id,
+        CatalogItem catalogItem = CatalogItem.Create(
+            source.Id, 
             source.Name, 
             source.Description, 
             source.ImageFileName,
-            catalogType,
+            catalogType, 
             catalogBrand,
-            source.Price,
+            source.Price, 
             source.Quantity);
+        return catalogItem;
     }
 }

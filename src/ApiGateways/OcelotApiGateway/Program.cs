@@ -18,8 +18,6 @@ builder.Services.AddCors(
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
-
 app.UseCors("AllowAll");
 
 app.AddCustomMiddleware();
