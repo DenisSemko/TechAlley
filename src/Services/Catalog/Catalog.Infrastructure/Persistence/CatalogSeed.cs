@@ -25,17 +25,17 @@ public static class CatalogSeed
 
         List<CatalogItem> catalogItems = new()
         {
-            new (Guid.NewGuid(), "Major IV",
+            CatalogItem.Create(Guid.NewGuid(), "Major IV",
                 "Meet Major IV, the iconic headphones from Marshall with 80+ solid hours of wireless playtime, wireless charging and a new, improved ergonomic design.", "marshall.png",
                 catalogTypes.FirstOrDefault(catalogType => catalogType.Type == "On-Ear")!,
                 catalogBrands.FirstOrDefault(catalogBrand => catalogBrand.Brand == "Marshall")!,
                 269, 350),
-            new (Guid.NewGuid(), "WH-XB910N ANC Wireless",
+            CatalogItem.Create(Guid.NewGuid(), "WH-XB910N ANC Wireless",
                 "Sony’s WH-XB910N rely on a powerful bass boost and effective noise cancelling. They are a comfortable and fairly flexible accessory for everyday mobile use.", "sony.png",
                 catalogTypes.FirstOrDefault(catalogType => catalogType.Type == "Over-Ear")!,
                 catalogBrands.FirstOrDefault(catalogBrand => catalogBrand.Brand == "Sony")!,
                 280, 134),
-            new (Guid.NewGuid(), "Solo3 Wireless Matte Black",
+            CatalogItem.Create(Guid.NewGuid(), "Solo3 Wireless Matte Black",
                 "Beats Solo3 Wireless on-ear headphones immerse you in rich, award-winning sound, everywhere you want to go.", "dre.png",
                 catalogTypes.FirstOrDefault(catalogType => catalogType.Type == "On-Ear")!,
                 catalogBrands.FirstOrDefault(catalogBrand => catalogBrand.Brand == "Beats By Dr.Dre")!,

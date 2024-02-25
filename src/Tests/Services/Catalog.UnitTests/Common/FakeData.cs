@@ -11,9 +11,9 @@ public static class FakeData
     
     public static List<CatalogItem> FakeCatalogItems = new ()
     {
-        new CatalogItem(new Guid("5ddc604b-e52e-4499-bb07-8b6801634863"), "Test Item",
+        CatalogItem.Create(new Guid("5ddc604b-e52e-4499-bb07-8b6801634863"), "Test Item",
             "Item", "", CatalogType, CatalogBrand, 12, 1000),
-        new CatalogItem(new Guid("99f804b4-7579-4ead-81ac-c0cf7b885df9"), "Test Item2",
+        CatalogItem.Create(new Guid("99f804b4-7579-4ead-81ac-c0cf7b885df9"), "Test Item2",
             "Item2", "", CatalogType, CatalogBrand, 10, 500)
     };
 
@@ -28,6 +28,6 @@ public static class FakeData
         Quantity = 0
     };
 
-    public static CatalogItem SingleFakeCatalogItem = new (new Guid("83775d25-ea44-4a95-b2c2-6fed4dc8d6a6"), "Test Item3",
+    public static CatalogItem SingleFakeCatalogItem = CatalogItem.Create(new Guid("83775d25-ea44-4a95-b2c2-6fed4dc8d6a6"), "Test Item3",
         "Item3", "", CatalogType, CatalogBrand, 90.0m, 2000);
 }

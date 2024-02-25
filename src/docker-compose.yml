@@ -1,17 +1,41 @@
 ﻿version: '3.4'
 
 services:
+  rabbitmq:
+    image: rabbitmq:management
+  
   catalogdb:
     image: mongo
     
   identitydb:
-    image: mcr.microsoft.com/azure-sql-edge:latest
+    image: postgres
+  
+  pgadmin:
+    image: dpage/pgadmin4
   
   catalog.api:
     image: catalog.api
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
-      
+    depends_on:
+      - catalogdb
+  
+  identityserver.api:
+    image: identityserver.api
+    build:
+      context: .
+      dockerfile: Services/IdentityServer/IdentityServer.API.API/Dockerfile
+    depends_on:
+      - identitydb
+  
+  #basket + redis (depends on rabbitmq)
+  #order + mssql (depends on rabbitmq)
+  #web
+  #portainer ?
+  #others
+  
+  
 volumes:
   catalog_data:
+  identity_data:

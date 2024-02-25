@@ -1,7 +1,7 @@
 namespace Catalog.Domain.Entities;
 
 [BsonCollection("CatalogWishlist")]
-public class CatalogWishlist : BaseEntity
+public sealed class CatalogWishlist : BaseEntity
 {
     public List<CatalogItem> CatalogItems { get; private set; }
     public Guid BuyerId { get; private set; }
